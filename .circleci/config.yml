@@ -1,0 +1,97 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.0.0
+  aws-eks: circleci/aws-eks@1.1.0
+  
+executors:
+  docker-executor:
+    docker:
+      - image: cimg/base:stable
+
+jobs:
+  build-backend:
+    executor: docker-executor
+    steps:
+      - checkout
+      - run: 
+          name: Restore NuGet packages
+          command: dotnet restore viBank-Web/viBank-Api
+      - run:
+          name: Build .NET project
+          command: dotnet build viBank-Web/viBank-Api --configuration Release
+      - save_cache:
+          key: v1-dotnet-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - viBank-Web/viBank-Api/bin/Release
+      
+
+  build-frontend:
+    executor: docker-executor
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-npm-{{ .Branch }}-{{ checksum "viBank-Web/viBank-Ui/package-lock.json" }}
+      - run: 
+          name: Install Node.js dependencies
+          command: npm install --prefix viBank-Web/viBank-Ui
+      - save_cache:
+          key: v1-npm-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - viBank-Web/viBank-Ui/node_modules
+      - run:
+          name: Build React project
+          command: npm run build --prefix viBank-Web/viBank-Ui
+
+  test-backend:
+    executor: docker-executor
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-dotnet-{{ .Branch }}-{{ .Revision }}
+      - run: 
+          name: Test .NET project
+          command: dotnet test viBank-Web/viBank-Api
+
+  test-frontend:
+    executor: docker-executor
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-npm-{{ .Branch }}-{{ .Revision }}
+      - run: 
+          name: Test React project
+          command: npm test --prefix viBank-Web/viBank-Ui
+
+  deploy-to-aws:
+    executor: docker-executor
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: your-cluster-name
+      - run:
+          name: Deploy to AWS EKS
+          command: |
+            docker build -t your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest .
+            docker push your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
+            kubectl set image deployment/your-deployment your-container=your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build-backend
+      - build-frontend
+      - test-backend:
+          requires:
+            - build-backend
+      - test-frontend:
+          requires:
+            - build-frontend
+      - deploy-to-aws:
+          requires:
+            - test-backend
+            - test-frontend

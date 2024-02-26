@@ -1,0 +1,17 @@
+# Use the official Flutter image
+FROM cirrusci/flutter:latest
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the project files into the container
+COPY . /app
+
+# Get Flutter dependencies
+RUN flutter pub get
+
+# Build the Flutter APK
+RUN flutter build apk --release
+
+# Set the entry point for the application
+ENTRYPOINT ["flutter"]

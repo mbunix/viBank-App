@@ -1,0 +1,22 @@
+# Use the official PostgreSQL image
+FROM postgres:latest
+
+# Set the working directory
+WORKDIR /docker-entrypoint-initdb.d
+
+# Environment variables for PostgreSQL
+ENV POSTGRES_DB=vibank
+ENV POSTGRES_USER=admin
+ENV POSTGRES_PASSWORD=securepassword
+
+# Copy initialization scripts if any (not necessary if using default setup)
+# COPY ./init.sql /docker-entrypoint-initdb.d/
+
+# Expose the PostgreSQL port
+EXPOSE 5432
+
+# Use the entrypoint provided by the official image
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+# Run PostgreSQL server on container start
+CMD ["postgres"]
