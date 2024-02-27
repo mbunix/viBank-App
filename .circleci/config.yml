@@ -8,8 +8,11 @@ executors:
   docker-executor:
     docker:
       - image: cimg/base:stable
-
+  docker-flutter-executor:
+    docker:
+      - image: gmemstr/flutter-fastlane-android:29.0
 jobs:
+  # build the api
   build-backend:
     executor: docker-executor
     steps:
@@ -25,7 +28,7 @@ jobs:
           paths:
             - viBank-Web/viBank-Api/bin/Release
       
-
+  #build the frontend 
   build-frontend:
     executor: docker-executor
     steps:
@@ -43,6 +46,46 @@ jobs:
       - run:
           name: Build React project
           command: npm run build --prefix viBank-Web/viBank-Ui
+  #build the mobile-app
+  build-mobile:
+    executor: docker-flutter-executor
+    environment:
+      TERM: dumb
+      _JAVA_OPTIONS: "-Xmx2048m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m"'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-flutter-{{ .Branch }}-{{ checksum "Mobile/viBank-Mobile/vibankapp/android/app/build.gradle" }}
+      - run: echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > key.jks
+      - run: echo "$PLAY_STORE_UPLOAD_KEY_INFO" | base64 --decode > android/key.properties
+      - run: cd android && fastlane beta
+  # run flutter tests
+  test-mobile:
+    executor: docker-executor
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-flutter-{{ .Branch }}-{{ .Revision }}
+      - run:
+          name: Test Flutter project
+          command: flutter test
+  # deploy flutter app to firebase
+  deploy-mobile:
+    executor: docker-executor
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.13
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: your-cluster-name
+      - run:
+          name: Deploy to Firebase
+          command: |
+           # docker build -t your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest .
+           # docker push your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
+           # firebase deploy
 
   test-backend:
     executor: docker-executor
@@ -75,9 +118,9 @@ jobs:
       - run:
           name: Deploy to AWS EKS
           command: |
-            docker build -t your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest .
-            docker push your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
-            kubectl set image deployment/your-deployment your-container=your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
+            #docker build -t your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest .
+           # docker push your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
+            #kubectl set image deployment/your-deployment your-container=your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
 
 workflows:
   version: 2
@@ -85,13 +128,24 @@ workflows:
     jobs:
       - build-backend
       - build-frontend
+      - build-mobile
+      - deploy-mobile
+      - test-mobile
       - test-backend:
           requires:
             - build-backend
       - test-frontend:
           requires:
             - build-frontend
+      - build-mobile:
+          requires:
+            - build-backend
+            - build-frontend
+      - test-mobile:
+          requires:
+            - build-mobile
       - deploy-to-aws:
           requires:
             - test-backend
             - test-frontend
+            - build-mobile

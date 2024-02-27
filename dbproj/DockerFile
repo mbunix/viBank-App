@@ -1,16 +1,23 @@
 # Use the official PostgreSQL image
-FROM postgres:latest
+FROM postgres:16.1-alpine
 
-# Set the working directory
-WORKDIR /docker-entrypoint-initdb.d
+LABEL author="https://github.com/mbunix"
+LABEL description="viBank PostgreSQL Database"
+LABEL version="1.0"
 
-# Environment variables for PostgreSQL
+# Set environment variables for PostgreSQL
 ENV POSTGRES_DB=vibank
 ENV POSTGRES_USER=admin
-ENV POSTGRES_PASSWORD=securepassword
+ENV POSTGRES_PASSWORD=87B65@mbunix254
 
-# Copy initialization scripts if any (not necessary if using default setup)
+# Set the working directory to PostgreSQL data directory (default data directory is used for simplicity)
+WORKDIR /var/lib/postgresql/data
+
+# Optionally, copy initialization scripts if any (for schema setup)
 # COPY ./init.sql /docker-entrypoint-initdb.d/
+
+# Copy the custom PostgreSQL configuration file into the container
+COPY postgres.conf /etc/postgresql/postgresql.conf
 
 # Expose the PostgreSQL port
 EXPOSE 5432
@@ -18,5 +25,5 @@ EXPOSE 5432
 # Use the entrypoint provided by the official image
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-# Run PostgreSQL server on container start
-CMD ["postgres"]
+# Run PostgreSQL server on container start with a custom configuration file
+CMD ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
