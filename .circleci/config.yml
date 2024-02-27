@@ -121,6 +121,7 @@ workflows:
       - test-frontend:
           requires:
             - build-frontend
+            - test-mobile
       - build-mobile:
           requires:
             - build-backend
@@ -129,5 +130,4 @@ workflows:
           requires:
             - test-backend
             - test-frontend
-            - build-mobile
-            - test-mobile
+           
