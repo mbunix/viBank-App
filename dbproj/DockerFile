@@ -1,5 +1,5 @@
 # Use the official PostgreSQL image
-FROM postgres:16.1-alpine
+FROM postgres:16.2
 
 LABEL author="https://github.com/mbunix"
 LABEL description="viBank PostgreSQL Database"
@@ -14,7 +14,7 @@ ENV POSTGRES_PASSWORD=87B65@mbunix254
 WORKDIR /var/lib/postgresql/data
 
 # Optionally, copy initialization scripts if any (for schema setup)
-# COPY ./init.sql /docker-entrypoint-initdb.d/
+COPY ./init.sql /docker-entrypoint-initdb.d/
 
 # Copy the custom PostgreSQL configuration file into the container
 COPY postgres.conf /etc/postgresql/postgresql.conf

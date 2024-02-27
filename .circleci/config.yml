@@ -71,21 +71,6 @@ jobs:
       - run:
           name: Test Flutter project
           command: flutter test
-  # deploy flutter app to firebase
-  deploy-mobile:
-    executor: docker-executor
-    steps:
-      - checkout
-      - setup_remote_docker:
-          version: 19.03.13
-      - aws-eks/update-kubeconfig-with-authenticator:
-          cluster-name: your-cluster-name
-      - run:
-          name: Deploy to Firebase
-          command: |
-           # docker build -t your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest .
-           # docker push your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
-           # firebase deploy
 
   test-backend:
     executor: docker-executor
@@ -129,7 +114,6 @@ workflows:
       - build-backend
       - build-frontend
       - build-mobile
-      - deploy-mobile
       - test-mobile
       - test-backend:
           requires:
@@ -141,11 +125,9 @@ workflows:
           requires:
             - build-backend
             - build-frontend
-      - test-mobile:
-          requires:
-            - build-mobile
       - deploy-to-aws:
           requires:
             - test-backend
             - test-frontend
             - build-mobile
+            - test-mobile
