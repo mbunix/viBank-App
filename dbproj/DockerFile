@@ -5,10 +5,7 @@ LABEL author="https://github.com/mbunix"
 LABEL description="viBank PostgreSQL Database"
 LABEL version="1.0"
 
-# Set environment variables for PostgreSQL
-ENV POSTGRES_DB=vibank
-ENV POSTGRES_USER=admin
-ENV POSTGRES_PASSWORD=87B65@mbunix254
+
 
 # Set the working directory to PostgreSQL data directory (default data directory is used for simplicity)
 WORKDIR /var/lib/postgresql/data
