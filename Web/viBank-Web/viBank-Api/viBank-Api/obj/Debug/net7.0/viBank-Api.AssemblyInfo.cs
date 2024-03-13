@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("e6fd86ca-343b-4910-b52c-f124905748e9")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("viBank-Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eda970c3518ecc96d207a634a82a10b9ba4a4431")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc409f546f9038c83e63c2930696a7a9117d3997")]
 [assembly: System.Reflection.AssemblyProductAttribute("viBank-Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("viBank-Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

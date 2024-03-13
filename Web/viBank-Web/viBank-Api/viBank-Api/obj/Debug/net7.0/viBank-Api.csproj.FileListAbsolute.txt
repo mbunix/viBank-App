@@ -43,3 +43,11 @@ C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-
 C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-Api\obj\Debug\net7.0\viBank-Api.pdb
 C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-Api\obj\Debug\net7.0\viBank-Api.genruntimeconfig.cache
 C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-Api\obj\Debug\net7.0\ref\viBank-Api.dll
+C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-Api\bin\Debug\net7.0\BCrypt.Net.dll
+C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-Api\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-Api\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-Api\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-Api\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-Api\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-Api\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\BellianBrianOtieno\personals2\AWS ops\Web\viBank-Web\viBank-Api\viBank-Api\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
