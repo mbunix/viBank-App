@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("viBank-Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fc409f546f9038c83e63c2930696a7a9117d3997")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+337ef8488288370ec99632694f33441558b2db95")]
 [assembly: System.Reflection.AssemblyProductAttribute("viBank-Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("viBank-Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
