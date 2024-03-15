@@ -103,9 +103,9 @@ jobs:
       - run:
           name: Deploy to AWS EKS
           command: |
-            #docker build -t your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest .
-           # docker push your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
-            #kubectl set image deployment/your-deployment your-container=your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
+            docker build -t your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest .
+            docker push your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
+            kubectl set image deployment/your-deployment your-container=your-aws-account.dkr.ecr.your-region.amazonaws.com/your-repo:latest
 
 workflows:
   version: 2
