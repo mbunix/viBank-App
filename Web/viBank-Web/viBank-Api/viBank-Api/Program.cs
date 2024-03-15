@@ -3,8 +3,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Net.WebSockets;
 using System.Text.Json;
+using viBank_Api.Services.UserService;
 using static viBank_Api.Authorization.RoleHandler;
 
 namespace viBank_Api;
@@ -57,7 +59,47 @@ public class Program
             options.AddPolicy(ViBankAuthorizationPolicies.RequireUser, policy => policy.AddRequirements(new UserRoleRequirement()));
         });
         builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen(options =>
+        {
+            options.AddSecurityDefinition("jwt", new OpenApiSecurityScheme
+            {
+                Type = SecuritySchemeType.Http,
+                In = ParameterLocation.Header,
+                Name = "Authorization",
+                Scheme = "bearer",
+                BearerFormat = "JWT",
+                Description = "JWT Authorization header using the Bearer scheme: \'Authorization: Bearer {token}\'"
+            });
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "jwt"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
+        }
+        );
+        builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        builder.Services.AddScoped<IUserService, UserService>();
 
-
+        var app = builder.Build();
+        app.UseCors(allowOriginsPolicy);
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+        app.UseHttpsRedirection();
+        app.UseAuthentication();
+        app.UseAuthorization();
+        app.MapControllers();
+        app.Run();
     }
 }
