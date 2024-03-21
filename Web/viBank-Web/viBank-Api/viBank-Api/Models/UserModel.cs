@@ -13,16 +13,13 @@ namespace viBank_Api.Models
                 public string? RefreshToken { get; set; }
                 public string? ResetToken { get; set; }
                 public DateTime? RefreshTokenExpiryTime { get; set; }
-#nullable enable
                 public DateTime? ResetDTMExpiry { get; set; }
-#nullable enable
                 public string? ActivationToken { get; set; }
-#nullable enable
                 public DateTime? ActivationDate { get; set; }
-#nullable enable
                 public DateTime? UpdatedDTM { get; set; }
                 public long RoleID { get; set; }
-
+                public Partner? Partner { get; set; }
+                public Distributor? Distributor { get; set; }
                 [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
                 public DateTime CreatedDTM { get; set; }
                 public bool IsDeleted { get; set; }

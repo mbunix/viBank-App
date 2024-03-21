@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("viBankApiTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+337ef8488288370ec99632694f33441558b2db95")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5b270a04505b95a8ab508bd1c0acef4da935b96")]
 [assembly: System.Reflection.AssemblyProductAttribute("viBankApiTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("viBankApiTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -37,7 +37,8 @@ namespace viBank_Api.DTO
         public string UserName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string? Role { get; set; }
-
+        public string? RefreshToken { get; set; }
+        public long RoleID { get; set; }
     }
     public class TokenObject
     {

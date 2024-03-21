@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8ceZE01h76t4wYfvf2vz1cz9l/GeRPS+Pv1u1jFtAoz8ZU3W1/WWiet76+qJNrrQdnbEBe4/iUZaDJy9fyE3bA==",
+  "dgSpecHash": "q3mmZTjjbm0p7kn7buYu4QqkDj4WX/FJ9IU8JgKm8YrGip0g7bWLyr3Yh1xRzD9wycc8+oaPUU5Odr8t6y+5Aw==",
   "success": true,
   "projectFilePath": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\Web\\viBank-Web\\viBank-Api\\viBankApiTests\\viBankApiTests.csproj",
   "expectedPackageFiles": [
@@ -114,9 +114,9 @@
     "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\xunit.extensibility.core\\2.4.2\\xunit.extensibility.core.2.4.2.nupkg.sha512",
     "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\xunit.extensibility.execution\\2.4.2\\xunit.extensibility.execution.2.4.2.nupkg.sha512",
     "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512",
-    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512"
+    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.17\\microsoft.netcore.app.ref.7.0.17.nupkg.sha512",
+    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.17\\microsoft.windowsdesktop.app.ref.7.0.17.nupkg.sha512",
+    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.17\\microsoft.aspnetcore.app.ref.7.0.17.nupkg.sha512"
   ],
   "logs": []
 }

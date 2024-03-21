@@ -20,7 +20,8 @@ namespace viBank_Api.Helpers
         Admin = 1001,
         Customer = 2001,
         Partner = 3001,
-        Employee = 4001
+
+        Distributor = 4001
     }
     public static class AuthenticationHelper
     {
@@ -52,7 +53,7 @@ namespace viBank_Api.Helpers
         }
         public static bool IsEmployee(long? roleId)
         {
-            return roleId == (int)UserRoles.Employee;
+            return roleId == (int)UserRoles.Distributor;
         }
     }
 }

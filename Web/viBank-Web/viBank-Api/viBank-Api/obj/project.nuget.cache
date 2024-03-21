@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9SoLFfiSBfV+CsKXt8+7xo+ep7kgc3cRrZ7OG0WxQcwA5JBM9Hcg/yDxTkkgj5L8SdocNg8p3lPrCXPwVIX0bQ==",
+  "dgSpecHash": "kqdMJ0s2s5YCdiA06CUnXoVau1f0OOVoBmxq/RMTLKB+zBYCnrXTTCj94kgtE2rwlOCYZfECVoXJDxDjrorpNg==",
   "success": true,
   "projectFilePath": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\Web\\viBank-Web\\viBank-Api\\viBank-Api\\viBank-Api.csproj",
   "expectedPackageFiles": [
@@ -46,10 +46,10 @@
     "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
     "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
-    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.16\\microsoft.netcore.app.host.win-x64.7.0.16.nupkg.sha512"
+    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.17\\microsoft.netcore.app.ref.7.0.17.nupkg.sha512",
+    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.17\\microsoft.windowsdesktop.app.ref.7.0.17.nupkg.sha512",
+    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.17\\microsoft.aspnetcore.app.ref.7.0.17.nupkg.sha512",
+    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.17\\microsoft.netcore.app.host.win-x64.7.0.17.nupkg.sha512"
   ],
   "logs": [
     {
