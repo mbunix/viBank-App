@@ -6456,19 +6456,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\": {}
+    "C:\\Users\\belli\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\Web\\viBank-Web\\viBank-Api\\viBankApiTests\\viBankApiTests.csproj",
+      "projectUniqueName": "D:\\CAMBRIDGE\\AWSops\\viBank-App\\Web\\viBank-Web\\viBank-Api\\viBankApiTests\\viBankApiTests.csproj",
       "projectName": "viBankApiTests",
-      "projectPath": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\Web\\viBank-Web\\viBank-Api\\viBankApiTests\\viBankApiTests.csproj",
-      "packagesPath": "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\Web\\viBank-Web\\viBank-Api\\viBankApiTests\\obj\\",
+      "projectPath": "D:\\CAMBRIDGE\\AWSops\\viBank-App\\Web\\viBank-Web\\viBank-Api\\viBankApiTests\\viBankApiTests.csproj",
+      "packagesPath": "C:\\Users\\belli\\.nuget\\packages\\",
+      "outputPath": "D:\\CAMBRIDGE\\AWSops\\viBank-App\\Web\\viBank-Web\\viBank-Api\\viBankApiTests\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\BellianBrianOtieno\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\belli\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6476,6 +6481,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "D:\\RPATraining\\Demo - Libraries (Starting Project)\\UIbank": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6536,6 +6543,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+<<<<<<< HEAD
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
@@ -6550,12 +6558,18 @@
             "version": "[7.0.17, 7.0.17]"
           }
         ],
+=======
+>>>>>>> 85d3ced3ffbf982d92e3743fe65b4b8c72355877
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.103\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+>>>>>>> 85d3ced3ffbf982d92e3743fe65b4b8c72355877
       }
     }
   }
