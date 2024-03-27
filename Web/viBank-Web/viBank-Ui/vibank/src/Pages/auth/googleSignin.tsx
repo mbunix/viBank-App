@@ -8,7 +8,7 @@ export default function GoogleSignIn() {
             <Typography variant="small" color="white" className="font-medium" placeholder={"google"}>
                 <IconButton variant= "text" placeholder={"google"}>
                     <img src ="public/icons8-google.svg" alt="logo" className="w-4"/>
-                            Sign in with Google
+                        Sign in with Google
                 </IconButton>  
            </Typography>
         </Button>
