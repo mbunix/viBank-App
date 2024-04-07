@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using Google.Apis.Auth;
+using viBank_Api.Models;
+using Microsoft.EntityFrameworkCore;
+using viBank_Api.Helpers;
+using viBank_Api.DTO;
 namespace viBank_Api.Controllers
 {
     [ApiController]
@@ -38,10 +42,46 @@ namespace viBank_Api.Controllers
                 if (existingUser == null)
                 {
                     // user does not exist so create  one
+                    var newUser = new UserModel
+                    {
+                        UserName = email,
+                        Email = email,
+                        RoleID = 2
+                    };
 
-
+                    _dbContext.User.Add(newUser);
+                    await _dbContext.SaveChangesAsync();
+                    existingUser = newUser;
                 }
+                //generate the Jwt token
+                var tokenvalidityinMinutes = Convert.ToInt32(_config["Token:TokenValidityInMinutes"]);
+                var token = TokenHelper.CreateToken(existingUser, tokenvalidityinMinutes);
+                var refreshToken = GenerateRefreshToken(existingUser);
+                existingUser.RefreshToken = refreshToken;
+                existingUser.RefreshTokenValidityInMinutes = DateTime.UtcNow.AddMinutes(tokenvalidityinMinutes).Ticks;
+                await _dbContext.SaveChangesAsync();
 
+                var returnedUser = new UserResponseDto
+                {
+                    ID = existingUser.Id,
+                    UserName = existingUser.UserName,
+                    Email = existingUser.Email,
+                    RoleID = existingUser.RoleID,
+                    RefreshToken = refreshToken
+                };
+
+                var result = new TokenResponseDto
+                {
+                    Token = token.Token,
+                    User = returnedUser,
+                    RefreshToken = token.RefreshToken,
+                    Expires = token.Token?.ValidTo
+                };
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
             }
 
         }
