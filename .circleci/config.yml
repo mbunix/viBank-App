@@ -3,11 +3,12 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.0
   aws-eks: circleci/aws-eks@1.1.0
-  
+
 executors:
   docker-executor:
     docker:
       - image: cimg/base:stable
+      
   docker-flutter-executor:
     docker:
       - image: gmemstr/flutter-fastlane-android:29.0
@@ -23,10 +24,15 @@ jobs:
       - run:
           name: Build .NET project
           command: dotnet build viBank-Web/viBank-Api --configuration Release
+      - run:
+          name: Run Backend Tests
+          command: dotnet run  --project viBank-Web/viBankApiTests
       - save_cache:
-          key: v1-dotnet-{{ .Branch }}-{{ .Revision }}
+          key: v1-dotnet-{{ checksum "viBank-Web/viBank-Api/*.csproj" }}
           paths:
             - viBank-Web/viBank-Api/bin/Release
+      - restore_cache:
+          key: v1-dotnet-{{ checksum "viBank-Web/viBank-Api/*.csproj" }}
       
   #build the frontend 
   build-frontend:

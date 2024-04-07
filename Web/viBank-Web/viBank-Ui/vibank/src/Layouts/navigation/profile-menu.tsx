@@ -1,5 +1,5 @@
 import { ChevronDownIcon, RectangleStackIcon } from "@heroicons/react/16/solid";
-import {  UserIcon, InboxIcon, LifebuoyIcon, PowerIcon } from "@heroicons/react/24/solid";
+import {  UserIcon, InboxIcon, PowerIcon } from "@heroicons/react/24/solid";
 import { Avatar, Button, Menu, MenuHandler, MenuItem, MenuList, Typography } from "@material-tailwind/react";
 import React, { useState } from "react";
 
