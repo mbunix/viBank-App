@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
 namespace viBank_Api.Helpers
 {
     public class AuthenticatedUser
