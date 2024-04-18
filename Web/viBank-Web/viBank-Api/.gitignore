@@ -1,0 +1,50 @@
+# General
+.vs/
+*.bak
+*.cache
+*.log
+*.user
+*.vspscc
+bin/
+obj/
+[Bb]in
+[Oo]bj
+# Visual Studio files
+*.user
+*.suo
+*.cache
+*.docstates
+# ReSharper
+_ReSharper*/
+*.resharper
+[Tt]est[Rr]esult*
+*.csproj.user
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]uild/
+[Bb]uild[Bb]in/
+[Ll]og/
+[Ll]ogs/
+[Ll]ogFiles/
+# MVC build results
+[Dd]ebug/
+[Ii]p/
+[Ss]taging/
+[Ll]og/
+# Roslyn cache directories
+*.ide/
+*.sln.ide/
+# Folders to ignore
+.vscode/
+.idea/
+.git/
+.node_modules/
+.nuget/
+_Temporary/
+wp-content/
