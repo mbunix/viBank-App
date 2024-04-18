@@ -6,7 +6,7 @@ jobs:
   # UI  JOB
   - job: vibank_ui_job
     variables:
-      APP_ENV: production
+      environment: production
     steps:
       - task: NodeTool@0
         inputs:
