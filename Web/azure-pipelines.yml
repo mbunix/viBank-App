@@ -1,6 +1,6 @@
 trigger: -main
 
-pool: vmImage:'ubuntu-latest'
+pool: My-Agent-Pool
 
 jobs:
   # UI  JOB
@@ -14,7 +14,7 @@ jobs:
         displayName: "Install Nodejs"
       #Run npm ci,build and then copy the staticwebapp.config.json to the out folder before zipping the artifact
       - script: |
-          cd vibank
+          cd Web/Vibank-Web/viBank-Ui/vibank
           npm ci
         displayName: "Npm Ci"
 
@@ -23,7 +23,7 @@ jobs:
           versionSpec: "18.x"
         displayName: "Npm run Build"
       - script: |
-          cd vibank
+          cd Web/Vibank-Web/viBank-Ui/vibank
           ls-la
           npm run build
       ## Zip the vibank/out folder which contains the static files
@@ -53,18 +53,18 @@ jobs:
       - task: DotNetCoreCLI@2
         inputs:
           command: "build"
-          projects: "$(Build.SourcesDirectory)/viBank-Api"
+          projects: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/viBank-Api"
 
       - task: DotNetCoreCLI@2
         displayName: "Run Api Tests"
         inputs:
           command: "test"
-          projects: "$(Build.SourcesDirectory)/viBankApiTests/viBankApiTests.csproj"
+          projects: "$(Build.SourcesDirectory)/Web/viBank-Web/viBankApiTests/viBankApiTests.csproj"
           testRunTitle: "API Tests"
 
       - task: ArchiveFiles@2
         inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)/viBank-Api/bin/Release"
+          rootFolderOrFile: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/bin/Release"
           includeRootFolder: false
           archiveType: "zip"
           archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
@@ -84,7 +84,7 @@ jobs:
         displayName: "Build Db Dacpac File"
         inputs:
           command: "build"
-          projects: "**/*.sqlproj"
+          projects: "$(Build.SourcesDirectory)/dbproj/SqlDatabase/SqlDatabase.sqlproj"
           arguments: "/p:NetCoreBuild=true"
           workingDirectory: "$(Build.SourcesDirectory)/dbroj/SqlDatabase"
 
