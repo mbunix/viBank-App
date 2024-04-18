@@ -19,7 +19,7 @@ jobs:
         displayName: "Install Nodejs"
       #Run npm ci,build and then copy the staticwebapp.config.json to the out folder before zipping the artifact
       - script: |
-          cd vibank
+          cd Web/Vibank-Web/viBank-Ui/vibank
           npm ci
         displayName: "Npm Ci"
 
@@ -28,7 +28,7 @@ jobs:
           versionSpec: "18.x"
         displayName: "Npm run Build"
       - script: |
-          cd vibank
+          cd Web/Vibank-Web/viBank-Ui/vibank
           ls-la
           npm run build
       ## Zip the vibank/out folder which contains the static files
