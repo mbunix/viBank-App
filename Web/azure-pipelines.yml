@@ -53,7 +53,7 @@ jobs:
       - task: DotNetCoreCLI@2
         inputs:
           command: "build"
-          projects: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/viBank-Api"
+          projects: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/viBank-Api.csproj"
 
       - task: DotNetCoreCLI@2
         displayName: "Run Api Tests"
