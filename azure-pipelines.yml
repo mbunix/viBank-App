@@ -5,7 +5,8 @@
 trigger:
 - main
 
-pool:  vmImage: 'ubuntu-latest'
+pool:  
+  vmImage: 'ubuntu-latest'
 jobs:
   # UI  JOB
   - job: vibank_ui_job
