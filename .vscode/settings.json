@@ -1,3 +1,5 @@
 {
-    "eslint.enable": false
+    "eslint.enable": false,
+    "ymlbuildpipelinepreview.devOpsApiPAT": "pwut2c5oyckvswha22nu4fdytojucv2scomtkfgznzqvohs5em7q",
+    "ymlbuildpipelinepreview.pipelineID": "1"
 }
