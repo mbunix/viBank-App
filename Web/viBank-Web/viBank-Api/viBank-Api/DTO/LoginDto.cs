@@ -4,14 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authentication;
 namespace viBank_Api.DTO
 {
     public class LoginRequestDto
     {
         [Required(ErrorMessage = "UserName is required"), EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string UserName { get; set; } = string.Empty;
+
+        [EmailAddress]
+        [Required]
+        public string Email { get; set; } = string.Empty;
         [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; } = string.Empty;
+        public bool RememberMe { get; set; }
+        public string? ReturnUrl { get; set; }
+        public IList<AuthenticationScheme> ExternalLogins { get; set; } = new List<AuthenticationScheme>();
     }
     public class ForgotPasswordDto
     {
@@ -37,6 +45,7 @@ namespace viBank_Api.DTO
         public string UserName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string? Role { get; set; }
+        public string? AccountNumber { get; set; }
         public string? RefreshToken { get; set; }
         public long RoleID { get; set; }
     }

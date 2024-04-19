@@ -12,8 +12,8 @@ namespace viBank_Api.Services.authService
         public Task<TokenResponseDto> RefreshToken(TokenModel tokenModel);
         public Task<TokenResponseDto> ForgotPassword(ForgotPasswordDto payload);
         public Task<bool> ResetPassword(ResetPasswordDto payload);
-
+        public Task<TokenResponseDto>SignInWithMicrosoft(string idToken,string returnUrl , string remoteError);
         public Task<bool> ValidateResetToken(ResetPasswordDto payload);
-        public Task<TokenResponseDto> SignInWithGoogle(string idToken);
+        public Task<TokenResponseDto> SignInWithGoogle(string idToken,string returnUrl, string remoteError );
     }
 }

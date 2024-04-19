@@ -12,6 +12,7 @@ namespace viBank_Api.Helpers
         public string? Email { get; set; }
         public long? RoleID { get; set; }
         public string? UserName { get; set; }
+        public string? AccountNumber { get; set; }
     }
     public enum UserRoles
     {
@@ -19,7 +20,7 @@ namespace viBank_Api.Helpers
         Admin = 1001,
         Customer = 2001,
         Partner = 3001,
-
+        AccountHolder = 3002,
         Distributor = 4001
     }
     public static class AuthenticationHelper
@@ -33,7 +34,8 @@ namespace viBank_Api.Helpers
                                         ID = u.ID,
                                         Email = u.Email,
                                         RoleID = u.RoleID,
-                                        UserName = u.UserName
+                                        UserName = u.UserName,
+                                        AccountNumber = u.Account!.AccountNumber
                                     })
                                     .FirstOrDefaultAsync(u => u.Email == authenticatedUserEmail);
             return authenticatedUser;
@@ -53,6 +55,10 @@ namespace viBank_Api.Helpers
         public static bool IsEmployee(long? roleId)
         {
             return roleId == (int)UserRoles.Distributor;
+        }
+        public static bool IsAccountHolder(long? roleId)
+        {
+            return roleId == (int)UserRoles.AccountHolder;
         }
     }
 }
