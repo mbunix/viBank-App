@@ -55,6 +55,12 @@ jobs:
     #   dependOn : UI JOB
 
     steps:
+      - task: UseDotNet@2
+        inputs:
+          packageType: "sdk"
+          version: "7.x"
+          installationPath: $(Agent.ToolsDirectory)/dotnet
+
       - task: DotNetCoreCLI@2
         inputs:
           command: "build"
@@ -85,6 +91,12 @@ jobs:
   - job: vibank_db_job
     #  dependsOn: vibank_api job
     steps:
+      - task: UseDotNet@2
+        inputs:
+          packageType: "sdk"
+          version: "7.x"
+          installationPath: $(Agent.ToolsDirectory)/dotnet
+
       - task: DotNetCoreCLI@2
         displayName: "Build Db Dacpac File"
         inputs:
