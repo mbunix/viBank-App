@@ -5,8 +5,8 @@
 trigger:
 - main
 
-pool:  
-  My-Agent-Pool
+pool:
+  vmImage: 'ubuntu-latest'
 jobs:
   # UI  JOB
   - job: vibank_ui_job
