@@ -75,7 +75,7 @@ jobs:
 
       - task: ArchiveFiles@2
         inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)/viBank-Api/bin/Release"
+          rootFolderOrFile: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/viBank-Api/bin/Release"
           includeRootFolder: false
           archiveType: "zip"
           archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
