@@ -1,86 +1,58 @@
-import React,{useState} from "react"
-import {  Typography,  MenuItem, Menu, MenuHandler, MenuList, Card } from "@material-tailwind/react";
+import React, { useState } from "react"
+import { Typography, MenuItem, Menu, MenuHandler, MenuList, Card } from "@material-tailwind/react";
 import { ChevronDownIcon, Square3Stack3DIcon } from "@heroicons/react/16/solid";
+import logoImage from "../../assets/Logo.jpg";
+import Image from 'next/image';
 export default function NavlistMenu() {
-     const [isMenuOpen, setIsMenuOpen] = useState(false);
-          
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const navListItems = [
         {
-            title: "Chat Application",
-            IconButton: <i className='fa-duotone fa-messages' />,
-            link: "/chats",
-            description: "Messages & Emails",
-        },
-        {
-            title: "Invoicing",
+            title: "Deposit",
             IconButton: <i className='fa-duotone fa-file-invoice-dollar' />,
-            link: "/invoices",
-            description: "Invoices & Payments",
+            link: "/deposit",
+            description: "Deposit",
         },
         {
-            title: "Reports",
+            title: "Dashboard",
             IconButton: <i className='fa-duotone fa-chart-simple' />,
-            link: "/reports",
-            description: "Reports",
+            link: "/dashboard",
+            description: "Dashboard",
         },
         {
-            title: "Todos",
+            title: "Company",
             IconButton: <i className='fa-duotone fa-cart-shopping' />,
-            link: "/todos",
-            description: "Pending Tasks",
+            link: "/company",
+            description: "Company",
         },
         {
-            title: "Tracking",
+            title: "Pricing",
             IconButton: <i className='fa-duotone fa-chart-simple' />,
-            link: "/tracking",
-            description: "Tracking & Analytics",
+            link: "/pricing",
+            description: "Pricing",
         },
-        {
-            title: 'Email Application',
-            IconButton: <i className='fa-duotone fa-envelope-open' />,
-            link: "/email",
-            description: "Get New Emails",
-        }
-    ]
-        const renderItems = navListItems.map(({ title, IconButton, link, description }) => (
-            <a href={link} key={title}>
-                <MenuItem placeholder={title}>
-                    {IconButton}
-                    <Typography variant="h6" color="blue-gray" className="mb-1 font-normal" children={title} placeholder={title} />
-                    <Typography variant="small" color="blue-gray" className="mb-1 font-normal" children={description} placeholder={description} />
-                    
-                </MenuItem>
-            </a>
-        ));
-    
-        return (
-            <Menu allowHover open={isMenuOpen} handler={setIsMenuOpen}>
-                <MenuHandler>
-                    <MenuItem className="hidden items-center gap-2 font-medium text-blue-gray-900 lg:flex lg:rounded-full" placeholder={"ChatApps"} >
-                        <Square3Stack3DIcon className="h-[18px] w-[18px] text-blue-gray-500" />{""}
-                        Apps{""}
-                        <ChevronDownIcon strokeWidth={2} className={`h-3 w-3 transition-transform ${isMenuOpen ? 'rotate-180' : ''}`} />
-                    </MenuItem>
-                
-                </MenuHandler>
 
-                <MenuList className="hidden w- [40rem] grid-cols-10 gap-4 overflow-auto lg:grid-flow-col " placeholder={"QuickLinks"}>
-                     <ul className="col-span-6  flex-col gap-4">
-                        {renderItems}
-                    </ul>
-                    <Card
-                        color="transparent"
-                        shadow={false}
-                        className="col-span-3 grid h-full w-full place-items-center rounded-md"
-                        placeholder={"QuickLinks"}
-                    >
-                        <h4>QuickLinks</h4>
-                        <li> <a href="/about">Terms and Conditions</a></li>
-                        <li> <a href="/e-manager">Employee Manager</a></li>
-                        <li><a href="/todos">Get Todos</a></li>
-                        <li><a href="/pricing">Our Latest Prices</a></li>
-                    </Card>
-                </MenuList>
-            </Menu>
-        )
-    }
+    ]
+    const renderItems = navListItems.map(({ title, IconButton, link, description }) => (
+        <a href={link} key={title} className="hover:bg-gray-100 p-2 rounded block text-lg font-black font-extrabold">
+            <MenuItem placeholder={title}>
+                <Typography variant="h6" color="blue-gray" className="mb-1 font-normal" children={title} placeholder={title} />
+            </MenuItem>
+        </a>
+    ));
+    return (
+        <nav className="flex justify-around align-center mt-8">
+            <ul className="flex">
+                <Image src={logoImage} alt="logoImage" />
+                <li className="m-3 font-bold">
+                    <a href="/home">
+                        Cardo
+                    </a>
+                </li>
+            </ul>
+            <ul className="flex ">
+                {renderItems}
+            </ul>
+        </nav>
+    )
+}

@@ -17,3 +17,31 @@ body {
   overflow-x: hidden;
   width: 100%;
 }
+.banner{
+  background-image: url('../assets/Background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+}
+.imagesCon{
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin: auto;
+}
+
+.imagesCon :nth-child(1){
+  margin-top: 50px;
+  margin-right: 50px;
+}
+
+.imagesCon :nth-child(2){
+  height: 90%;
+}
+.creditCard{
+  position: absolute;
+  top: 25%;
+  left: 25%;
+}

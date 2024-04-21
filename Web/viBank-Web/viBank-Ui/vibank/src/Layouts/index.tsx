@@ -1,4 +1,3 @@
-import React from "react";
-const AppLayout = ({ children }: { children: React.ReactNode }) => {
-
+const AppLayout = ({children}:{children:React.ReactNode}) => {
+    
 }
