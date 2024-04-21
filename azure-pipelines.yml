@@ -3,10 +3,10 @@
 # Add steps that publish symbols, save build artifacts, deploy, and more:
 
 trigger:
-- main
+  - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: "ubuntu-latest"
 jobs:
   # UI  JOB
   - job: vibank_ui_job
@@ -58,13 +58,13 @@ jobs:
       - task: DotNetCoreCLI@2
         inputs:
           command: "build"
-          projects: "$(Build.SourcesDirectory)/viBank-Api"
+          projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api/viBank-Api.csproj"
 
       - task: DotNetCoreCLI@2
         displayName: "Run Api Tests"
         inputs:
           command: "test"
-          projects: "$(Build.SourcesDirectory)/viBankApiTests/viBankApiTests.csproj"
+          projects: "$(Build.SourcesDirectory)/viBank-Web/viBankApiTests/viBankApiTests.csproj"
           testRunTitle: "API Tests"
 
       - task: ArchiveFiles@2
@@ -91,7 +91,7 @@ jobs:
           command: "build"
           projects: "**/*.sqlproj"
           arguments: "/p:NetCoreBuild=true"
-          workingDirectory: "$(Build.SourcesDirectory)/dbroj/SqlDatabase"
+          workingDirectory: "$(Build.SourcesDirectory)/dbroj/SqlDatabase/SqlDatabase.sqlproj"
 
       - task: ArchiveFiles@2
         displayName: "Archive DB build files"
