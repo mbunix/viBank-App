@@ -5,7 +5,9 @@ import MicrosoftSignIn from './MicrosoftLogin';
 
 export default function LoginPage({ onClose } : { onClose: () => void }) {
     const handleLoginSuccess = () => {
-        onClose(); // Close the login page upon successful authentication
+        onClose(
+            () => { window.location.href = "/dashboard"; }
+        ); 
     };
 
     return ( 
@@ -18,7 +20,7 @@ export default function LoginPage({ onClose } : { onClose: () => void }) {
                     </Typography>
                     <Typography color="gray" className="mt-1 font-normal" placeholder={"login"}>
                         Login to your account and enjoy.
-                         <MicrosoftSignIn onSuccess={handleLoginSuccess} onError={console.error} />
+                        <MicrosoftSignIn onSuccess={handleLoginSuccess} onError={console.error} />
                     </Typography>
                 </Card>
             </div>
