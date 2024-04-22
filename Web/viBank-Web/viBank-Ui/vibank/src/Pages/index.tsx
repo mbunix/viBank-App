@@ -11,13 +11,16 @@ import RootLayout from "@/Components/Layout";
 import LoginPage from "./auth/loginpage";
 import { Button } from "@material-tailwind/react";
 import SignUpPage from "./auth/signUpPage";
+
+
 const Home = () => {
    const [isSigUpWindowOpen, setIsSigUpWindowOpen] = useState(false);
    const [isLoginWindowOpen, setIsLoginWindowOpen] = useState(false);
    return (
       <><div className="w-[50%]">
          <NavlistMenu />
-      </div><div>
+      </div>
+         <div>
             <section className="mt-[5%] flex justify-around align-center m-auto h-[100vh]">
                <div className="flex-1 flex-col">
                   <article className="flex-row justify-center align-center ml-[25%]">
@@ -56,10 +59,10 @@ const Home = () => {
                      </div>
                   </article>
                </div>
-               <div className="flex-1 h-[100%]   banner">
-                  <div className="imagesCon">
-                     <Image src={stars} alt="Stars" height={100} width={150} />
-                     <ul className="flex justify-between align-center">
+               <div className="flex-1 h-[50%]   banner">
+                  <div className=" m-auto">
+                     <Image src={stars} alt="Stars" height={100} width={100} />
+                      <ul className="flex justify-end align-center mt-[-15%]">
                         <Button className="bg-[#1D1D1C] rounded-lg p-2 mr-5 font-bold text-white" onClick={() => setIsSigUpWindowOpen(true)} placeholder={"Sign Up"} >
                            Open your account
                         </Button>
@@ -69,7 +72,7 @@ const Home = () => {
                            </Button>
                         </li>
                      </ul>
-                     <Image src={hand} alt="Hand" className="rounded-lg" />
+                     <Image src={hand} alt="Hand" className="rounded-lg m-auto " />
                   </div>
                   <div className="creditCard">
                      <Image src={creditCard} alt="credit card" />
@@ -78,7 +81,7 @@ const Home = () => {
             </section>
          </div>
          {isSigUpWindowOpen && <SignUpPage onClose={() => setIsSigUpWindowOpen(false)} />}
-         {isLoginWindowOpen && <LoginPage onClose={() => setIsLoginWindowOpen(false)} />}
+         {isLoginWindowOpen && <LoginPage />}
       </>         
    )
 }

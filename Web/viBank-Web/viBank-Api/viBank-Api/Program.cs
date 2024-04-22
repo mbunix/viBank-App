@@ -45,7 +45,7 @@ public class Program
         // Register the DbContext
 
         builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"))
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             );
 
 

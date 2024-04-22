@@ -1,3 +1,5 @@
+
+
 export type APICollectionResponse<Results> = {
     map(arg0: (e: any) => any): import("react").SetStateAction<string[] | undefined>
     totalCount: number,

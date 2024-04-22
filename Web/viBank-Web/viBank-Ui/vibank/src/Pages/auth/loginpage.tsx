@@ -1,27 +1,39 @@
 import React from 'react';
 import { Card, Typography } from '@material-tailwind/react';
-import GoogleSignIn from './googleSignin';
-import MicrosoftSignIn from './MicrosoftLogin';
-
-export default function LoginPage({ onClose } : { onClose: () => void }) {
-    const handleLoginSuccess = () => {
-        onClose(
-            () => { window.location.href = "/dashboard"; }
-        ); 
-    };
-
+import { useSession, signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
+export default function LoginPage() {
+    const { data: session } = useSession();
+    const router = useRouter();
+    if (session) {
+        router.push('/dashboard')
+        return (
+            <>
+                You are already logged in as {session.user?.email}
+            </>
+        )
+    }
     return ( 
-        <div className="flex h-1/4 w-1/4 ">
-            {/* Right side: Login form */}
-            <div className="w-1/2 flex justify-center items-center">
+        <div className="h-50 w-50 ">
+            <div className="flex justify-center align-center border-2 border-gray-500">
                 <Card color="transparent" shadow={false} placeholder={"login"}>
                     <Typography variant="h5" color="blue-gray" className="mb-2" placeholder={"login"}>
                         Hi, Welcome Back!
                     </Typography>
-                    <Typography color="gray" className="mt-1 font-normal" placeholder={"login"}>
+                    <Typography color="gray" className="mt-1  justify-around font-normal flex p-3" placeholder={"login"}>
                         Login to your account and enjoy.
-                        <MicrosoftSignIn onSuccess={handleLoginSuccess} onError={console.error} />
-                    </Typography>
+                </Typography>
+                <div className='flex justify-around'>
+                        <button className="w-50 mt-6 py-3 rounded-lg bg-gray-300 text-gray-900 font-medium" onClick={(e) => { e.preventDefault(); signIn('google')}}>
+                    <img src='icons8-google-48.png' alt="google" />
+                    Login with google
+                </button>
+                or 
+                <button className="w-50 mt-6 py-3 rounded-lg bg-gray-300 text-gray-900 font-medium " onClick={() => signIn('microsoft')}>
+                    <img src='icons8-microsoft-48.png' alt="microsoft" />
+                    Login with microsoft
+                    </button>
+                </div>
                 </Card>
             </div>
         </div>

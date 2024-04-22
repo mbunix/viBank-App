@@ -1,0 +1,127 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model EFMigrationsHistory {
+  MigrationId    String @id(map: "PK___EFMigrationsHistory") @db.NVarChar(150)
+  ProductVersion String @db.NVarChar(32)
+
+  @@map("__EFMigrationsHistory")
+}
+
+model account {
+  ID             BigInt   @id(map: "PK_account") @default(autoincrement())
+  AccountID      String   @db.UniqueIdentifier
+  AccountNumber  String?  @db.NVarChar(Max)
+  AccountType    Int
+  AccountBalance Float
+  UserID         BigInt
+  UserEmail      String   @db.NVarChar(Max)
+  CreatedDTM     DateTime
+  UpdatedDTM     DateTime
+  User           User[]
+}
+
+model ATMs {
+  ID              BigInt         @id(map: "PK_ATMs") @default(autoincrement())
+  ATMID           String         @db.UniqueIdentifier
+  Location        String         @db.NVarChar(Max)
+  AvailbleBalance Decimal        @db.Decimal(18, 2)
+  TransactionID   String         @db.UniqueIdentifier
+  isActive        Boolean
+  isDeleted       Boolean
+  CreatedDTM      DateTime
+  UpdatedDTM      DateTime
+  CreatedBy       BigInt
+  UpdatedBy       BigInt
+  Transactions    Transactions[]
+}
+
+model Transactions {
+  ID                       BigInt   @id(map: "PK_Transactions") @default(autoincrement())
+  TransactionID            String   @db.UniqueIdentifier
+  transactionType          Int
+  Amount                   Float
+  OriginAccountNumber      String?  @db.NVarChar(Max)
+  DestinationAccountNumber String?  @db.NVarChar(Max)
+  AccountID                String   @db.UniqueIdentifier
+  TransactionDate          DateTime
+  ATMID                    String   @default(dbgenerated("00000000-0000-0000-0000-000000000000"), map: "DF__Transacti__ATMID__52593CB8") @db.UniqueIdentifier
+  ATMsID                   BigInt   @default(dbgenerated("CONVERT([bigint],(0))"), map: "DF__Transacti__ATMsI__534D60F1")
+  ATMs                     ATMs     @relation(fields: [ATMsID], references: [ID], onDelete: Cascade, onUpdate: NoAction, map: "FK_Transactions_ATMs_ATMsID")
+
+  @@index([ATMsID], map: "IX_Transactions_ATMsID")
+}
+
+model User {
+  ID                     BigInt                    @id(map: "PK_User") @default(autoincrement())
+  UserID                 String                    @db.UniqueIdentifier
+  UserName               String                    @db.NVarChar(Max)
+  PasswordHash           String                    @db.NVarChar(Max)
+  Email                  String                    @db.NVarChar(Max)
+  RefreshToken           String?                   @db.NVarChar(Max)
+  ResetToken             String?                   @db.NVarChar(Max)
+  email         String?   @unique
+  emailVerified DateTime? @map(name: "email_verified")
+  image         String?
+  RefreshTokenExpiryTime DateTime?
+  ResetDTMExpiry         DateTime?
+  ActivationToken        String?                   @db.NVarChar(Max)
+  ActivationDate         DateTime?
+  UpdatedDTM             DateTime?
+  RoleID                 BigInt
+  AccountID              BigInt?
+  CreatedDTM             DateTime @default(now()) @map(name: "created_at")
+  IsDeleted              Boolean
+  DeletedBy              BigInt?
+  DeletedDTM             DateTime?
+  RowVersion             Unsupported("timestamp")?
+  account                account?                  @relation(fields: [AccountID], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "FK_User_account_AccountID")
+   @@map(name: "users")
+  @@index([AccountID], map: "IX_User_AccountID")
+}
+model userAccount {
+  id                 Int       @default(autoincrement()) @id
+  compoundId         String    @unique @map(name: "compound_id")
+  userId             Int       @map(name: "user_id")
+  providerType       String    @map(name: "provider_type")
+  providerId         String    @map(name: "provider_id")
+  providerAccountId  String    @map(name: "provider_account_id")
+  refreshToken       String?   @map(name: "refresh_token")
+  accessToken        String?   @map(name: "access_token")
+  accessTokenExpires DateTime? @map(name: "access_token_expires")
+  createdAt          DateTime  @default(now()) @map(name: "created_at")
+  updatedAt          DateTime  @default(now()) @map(name: "updated_at")
+
+  @@index([providerAccountId], name: "providerAccountId")
+  @@index([providerId], name: "providerId")
+  @@index([userId], name: "userId")
+
+  @@map(name: "userAccounts")
+}
+model Session {
+  id           Int      @default(autoincrement()) @id
+  userId       Int      @map(name: "user_id")
+  expires      DateTime
+  sessionToken String   @unique @map(name: "session_token")
+  accessToken  String   @unique @map(name: "access_token")
+  createdAt    DateTime @default(now()) @map(name: "created_at")
+  updatedAt    DateTime @default(now()) @map(name: "updated_at")
+
+  @@map(name: "sessions")
+}
+model VerificationRequest {
+  id         Int      @default(autoincrement()) @id
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  createdAt  DateTime  @default(now()) @map(name: "created_at")
+  updatedAt  DateTime  @default(now()) @map(name: "updated_at")
+
+  @@map(name: "verification_requests")
+}
