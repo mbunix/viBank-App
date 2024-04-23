@@ -90,18 +90,18 @@ jobs:
           command: "build"
           projects: "**/*.sqlproj"
           arguments: "/p:NetCoreBuild=true"
-          workingDirectory: "$(Build.SourcesDirectory)/dbproj/SqlDatabase/vibankDb.sqlproj"
+          workingDirectory: "$(Build.SourcesDirectory)/dbproj/vibankDb/vibankDb.sqlproj"
       - task: ArchiveFiles@2
         displayName: "Archive DB build files"
         inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)dbproj/SqlDatabase/viBankDb/bin/Debug"
+          rootFolderOrFile: "$(Build.SourcesDirectory)/dbproj/viBankDb/bin/Debug"
           includeRootFolder: false
           archiveType: zip
-          archiveFile: "$(Build.ArtifactStagingDirectory)/vibank-db-$(Build.BuildId).zip"
+          archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
           replaceExistingArchive: true
 
       - task: PublishPipelineArtifact@1
         displayName: "Publish DB Artifact"
         inputs:
-          targetPath: "$(Build.ArtifactStagingDirectory)/vibank-db-$(Build.BuildId).zip"
+          targetPath: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
           artifactName: vibank-db
