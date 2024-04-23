@@ -10,7 +10,6 @@ jobs:
       environment: production
       buildConfiguration: "Release"
       workingDirectory: Web/viBank-Web/viBank-Ui/vibank
-      azureSubscription: subscription1
     steps:
       - task: NodeTool@0
         inputs:
@@ -46,13 +45,6 @@ jobs:
       - script: |
           cd ui/out
         displayName: "UI Copy static file to out folder"
-
-      # - task: AzureStaticWebApp@0
-      #   inputs:
-      #     app_location: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Ui/vibank"
-      #     api_location: "api"
-      #     output_location: "/out"
-      #     azure_static_web_apps_api_token: $(deployment_token)
   - job: api_job
     steps:
       - task: DotNetCoreCLI@2
@@ -88,12 +80,6 @@ jobs:
         inputs:
           targetPath: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
           artifact: "vibank-api"
-      # - task: AzureWebApp@1
-      #   inputs:
-      #     azureSubscription: "$azureSubscription"
-      #     appType: "webAppLinux"
-      #     appName: "vibank-api"
-      #     package: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
 
   - job: vibank_db_job
     steps:
