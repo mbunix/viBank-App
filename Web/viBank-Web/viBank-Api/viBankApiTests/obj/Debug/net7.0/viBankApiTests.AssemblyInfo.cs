@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("viBankApiTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c57d8312f6e4edaa7069fc348ed3542aaa1b03e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+beb75cec7278b349ba59196960b3bded6baed603")]
 [assembly: System.Reflection.AssemblyProductAttribute("viBankApiTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("viBankApiTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
