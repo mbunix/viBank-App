@@ -1,121 +1,87 @@
-# ASP.NET
-# Build and test ASP.NET projects.
-# Add steps that publish symbols, save build artifacts, deploy, and more:
-
-trigger:
-  - main
+trigger: main
 
 pool:
   vmImage: "ubuntu-latest"
+
 jobs:
-  # UI  JOB
   - job: vibank_ui_job
     variables:
-      APP_ENV: production
+      environment: production
+      buildConfiguration: "Release"
     steps:
       - task: NodeTool@0
         inputs:
           versionSpec: "18.x"
         displayName: "Install Nodejs"
-      #Run npm ci,build and then copy the staticwebapp.config.json to the out folder before zipping the artifact
       - script: |
-          cd Web/Vibank-Web/viBank-Ui/vibank
-          npm ci
-        displayName: "Npm Ci"
-
-      - task: NodeTool@0
-        inputs:
-          versionSpec: "18.x"
-        displayName: "Npm run Build"
-      - script: |
-          cd Web/Vibank-Web/viBank-Ui/vibank
-          ls-la
+          cd vibank
+          npm install
           npm run build
-      ## Zip the vibank/out folder which contains the static files
+        displayName: "Npm Run Build"
+
       - task: ArchiveFiles@2
         displayName: "Archive built ui files"
         inputs:
-          rootFolderOrFile: $(Build.SourcesDirectory)vibank/out
+          rootFolderOrFile: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Ui/vibank/out"
           includeRootFolder: false
           archiveType: "zip"
-          archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+          archiveFile: "$(Build.ArtifactStagingDirectory)/vibank-ui-$(Build.BuildId).zip"
           replaceExistingArchive: true
 
       - task: PublishPipelineArtifact@1
         displayName: "Publish Ui Artifacts"
         inputs:
-          targetPath: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+          targetPath: "$(Build.ArtifactStagingDirectory)/vibank-ui-$(Build.BuildId).zip"
           artifact: "vibank-ui"
-      - script: |
-          cd vibank/out
-        displayName: "Ui Copy Static files"
 
-  # Api
   - job: api_job
-    #   dependOn : UI JOB
-
     steps:
-      - task: UseDotNet@2
+      - task: DotNetCoreCLI@2
+      - script: dotnet build --configuration $(buildConfiguration)
+        displayName: "dotnet build $(buildConfiguration)"
         inputs:
-          packageType: "sdk"
-          version: "8.0.204"
-          installationPath: $(Agent.ToolsDirectory)/dotnet
+          command: "publish"
+          arguments: "--configuration $(buildConfiguration)"
+          projects: "$(Build.SourcesDirectory)/viBank-Api/viBank-Api.csproj"
 
       - task: DotNetCoreCLI@2
         inputs:
-          command: "build"
-          projects: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/viBank-Api/viBank-Api.csproj"
-
-      - task: DotNetCoreCLI@2
-        displayName: "Run Api Tests"
+          command: "publish"
+          publishWebProjects: true
+      - task: AzureWebApp@1
         inputs:
-          command: "test"
-          projects: "$(Build.SourcesDirectory)/Web/viBank-Web/viBankApiTests/viBankApiTests.csproj"
-          testRunTitle: "API Tests"
-
-      - task: ArchiveFiles@2
-        inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/viBank-Api/bin/Release"
-          includeRootFolder: false
-          archiveType: "zip"
-          archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
-          replaceExistingArchive: true
+          azureSubscription: "Azure subscription 1"
+          appType: "webAppLinux"
+          appName: "vibank-api"
+          package: "$(Build.ArtifactStagingDirectory)/**/*.zip"
 
       - task: PublishPipelineArtifact@1
         displayName: "Publish API Artifact"
         inputs:
-          targetPath: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+          targetPath: "$(Build.ArtifactStagingDirectory)/vibank-api-$(Build.BuildId).zip"
           artifact: "vibank-api"
 
-    # vibank db job
   - job: vibank_db_job
-    #  dependsOn: vibank_api job
     steps:
-      - task: UseDotNet@2
-        inputs:
-          packageType: "sdk"
-          version: "8.0.204"
-          installationPath: $(Agent.ToolsDirectory)/dotnet
-
       - task: DotNetCoreCLI@2
         displayName: "Build Db Dacpac File"
         inputs:
           command: "build"
           projects: "**/*.sqlproj"
           arguments: "/p:NetCoreBuild=true"
-          workingDirectory: "$(Build.SourcesDirectory)/dbroj/SqlDatabase/SqlDatabase.sqlproj"
+          workingDirectory: "$(Build.SourcesDirectory)/dbproj/SqlDatabase"
 
       - task: ArchiveFiles@2
         displayName: "Archive DB build files"
         inputs:
-          rootFolderOrFile: "$(System.DefaultWorkingDirectory)/dbproj/bin/Debug"
+          rootFolderOrFile: "$(Build.SourcesDirectory)/dbproj/bin/Debug"
           includeRootFolder: false
           archiveType: zip
-          archiveFile: $(Build.ArtifactStagingDirectory)/db/$(Build.BuildId).zip
+          archiveFile: "$(Build.ArtifactStagingDirectory)/vibank-db-$(Build.BuildId).zip"
           replaceExistingArchive: true
 
       - task: PublishPipelineArtifact@1
         displayName: "Publish DB Artifact"
         inputs:
-          targetPath: "$(Build.ArtifactStagingDirectory)/db/$(Build.BuildId).zip"
+          targetPath: "$(Build.ArtifactStagingDirectory)/vibank-db-$(Build.BuildId).zip"
           artifactName: vibank-db
