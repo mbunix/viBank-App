@@ -18,7 +18,6 @@
     CONSTRAINT FK_Transaction_TransactionID FOREIGN KEY ([TransactionID]) REFERENCES [dbo].[Transactions] ([TransactionID]),
    
 )
- 
 GO
 
 CREATE NONCLUSTERED INDEX IX_ATMs_ATMID

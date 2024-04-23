@@ -48,10 +48,10 @@ jobs:
 
       - task: ArchiveFiles@2 # Assuming the build output directory is correct
         inputs:
-          rootFolderOrFile: "$(Build.ArtifactStagingDirectory)/Web/viBank-Web/viBank-Api/bin/Release"
+          rootFolderOrFile: "$(Build.ArtifactStagingDirectory)/Release"
           includeRootFolder: false
           archiveType: "zip"
-          archiveFile: "$(Build.ArtifactStagingDirectory)/vibank-api-$(Build.BuildId).zip"
+          archiveFile: $(Build.ArtifactStagingDirectory)/vibank-api-$(Build.BuildId).zip"
           replaceExistingArchive: true
 
       - task: PublishPipelineArtifact@1
