@@ -44,11 +44,11 @@ jobs:
         inputs:
           command: "build"
           arguments: "--configuration $(buildConfiguration)"
-          projects: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/viBank-Api.csproj"
+          projects: "$(Build.SourcesDirectory)/viBank-Api/viBank-Api.csproj"
 
-      - task: ArchiveFiles@2
+      - task: ArchiveFiles@2 # Assuming the build output directory is correct
         inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)/viBank-Api/bin/Release"
+          rootFolderOrFile: "$(Build.ArtifactStagingDirectory)/Web/viBank-Web/viBank-Api/bin/Release"
           includeRootFolder: false
           archiveType: "zip"
           archiveFile: "$(Build.ArtifactStagingDirectory)/vibank-api-$(Build.BuildId).zip"
