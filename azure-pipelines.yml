@@ -36,8 +36,8 @@ jobs:
 
   - job: api_job
     steps:
-      - task: DotNetCoreCLI@2
       - script: dotnet build --configuration $(buildConfiguration)
+      - task: DotNetCoreCLI@2
         displayName: "dotnet build $(buildConfiguration)"
         inputs:
           command: "publish"
