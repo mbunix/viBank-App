@@ -13,12 +13,8 @@ jobs:
         inputs:
           versionSpec: "18.x"
         displayName: "Install Nodejs"
-
-      - task: Npm@0
-        inputs:
-          command: "install"
       - script: |
-          cd Web/viBank-Web/viBank-Ui/vibank
+          cd vibank
           npm install
           npm run build
         displayName: "Npm Run Build"
