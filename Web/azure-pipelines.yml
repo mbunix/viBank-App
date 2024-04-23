@@ -37,18 +37,23 @@ jobs:
   - job: api_job
     steps:
       - task: DotNetCoreCLI@2
+      - script: dotnet build --configuration $(buildConfiguration)
+        displayName: "dotnet build $(buildConfiguration)"
         inputs:
-          command: "build"
+          command: "publish"
           arguments: "--configuration $(buildConfiguration)"
           projects: "$(Build.SourcesDirectory)/viBank-Api/viBank-Api.csproj"
 
-      - task: ArchiveFiles@2 # Assuming the build output directory is correct
+      - task: DotNetCoreCLI@2
         inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)/ViBank-Web/viBank-Api/viBank-Api/bin/Release"
-          includeRootFolder: false
-          archiveType: "zip"
-          archiveFile: $(Build.ArtifactStagingDirectory)/vibank-api-$(Build.BuildId).zip"
-          replaceExistingArchive: true
+          command: "publish"
+          publishWebProjects: true
+      - task: AzureWebApp@1
+        inputs:
+          azureSubscription: "Azure subscription 1"
+          appType: "webAppLinux"
+          appName: "vibank-api"
+          package: "$(Build.ArtifactStagingDirectory)/**/*.zip"
 
       - task: PublishPipelineArtifact@1
         displayName: "Publish API Artifact"
