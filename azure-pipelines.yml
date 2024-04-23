@@ -51,26 +51,26 @@ jobs:
       - task: DotNetCoreCLI@2
         inputs:
           command: "build"
-          projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api"
+          projects: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/viBank-Api/viBank-Api.csproj"
 
       - task: DotNetCoreCLI@2
         displayName: "Run API Tests"
         inputs:
           command: "test"
-          projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBankApiTests/viBankApiTests.csproj"
+          projects: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/viBankApiTests/viBankApiTests.csproj"
           publishTestResults: true
 
       - task: DotNetCoreCLI@2
         inputs:
           command: "publish"
           projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api"
-          arguments: "--output $(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api/bin/Release"
+          arguments: "--output $(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/viBank-Api/bin/Release"
           zipAfterPublish: false
           modifyOutputPath: false
 
       - task: ArchiveFiles@2
         inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api/bin/Release"
+          rootFolderOrFile: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/viBank-Api/bin/Release"
           includeRootFolder: false
           archiveType: "zip"
           archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
