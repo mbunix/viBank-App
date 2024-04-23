@@ -79,7 +79,7 @@ jobs:
       - task: PublishPipelineArtifact@1
         displayName: "Publish API Artifact"
         inputs:
-          targetPath: "$(Build.ArtifactStagingDirectory)/vibank-api-$(Build.BuildId).zip"
+          targetPath: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
           artifact: "vibank-api"
 
   - job: vibank_db_job
