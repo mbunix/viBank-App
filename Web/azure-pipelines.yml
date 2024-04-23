@@ -14,11 +14,14 @@ jobs:
           versionSpec: "18.x"
         displayName: "Install Nodejs"
 
+      - task: Npm@0
+        inputs:
+          command: "install"
       - script: |
           cd Web/viBank-Web/viBank-Ui/vibank
-          npm ci
+          npm install
           npm run build
-        displayName: "Npm Ci & Build"
+        displayName: "Npm Run Build"
 
       - task: ArchiveFiles@2
         displayName: "Archive built ui files"
@@ -45,7 +48,7 @@ jobs:
 
       - task: ArchiveFiles@2
         inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Api/bin/Release"
+          rootFolderOrFile: "$(Build.SourcesDirectory)/viBank-Api/bin/Release"
           includeRootFolder: false
           archiveType: "zip"
           archiveFile: "$(Build.ArtifactStagingDirectory)/vibank-api-$(Build.BuildId).zip"
@@ -63,7 +66,7 @@ jobs:
         displayName: "Build Db Dacpac File"
         inputs:
           command: "build"
-          projects: "$(Build.SourcesDirectory)/dbproj/SqlDatabase/SqlDatabase.sqlproj"
+          projects: "$(Build.SourcesDirectory)/SqlDatabase/SqlDatabase.sqlproj"
           arguments: "/p:NetCoreBuild=true"
           workingDirectory: "$(Build.SourcesDirectory)/dbproj/SqlDatabase"
 
