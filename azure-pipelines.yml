@@ -94,7 +94,7 @@ jobs:
       - task: ArchiveFiles@2
         displayName: "Archive DB build files"
         inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)/dbproj/viBankDb/bin/Debug"
+          rootFolderOrFile: "$(Build.SourcesDirectory)/dbproj/vibankDb/bin/Debug"
           includeRootFolder: false
           archiveType: zip
           archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
