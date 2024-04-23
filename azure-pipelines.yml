@@ -41,20 +41,31 @@ jobs:
       - task: DotNetCoreCLI@2
         displayName: "dotnet build $(buildConfiguration)"
         inputs:
-          command: "publish"
+          command: "build"
           arguments: "--configuration $(buildConfiguration)"
-          projects: "$(Build.SourcesDirectory)/viBank-Api/viBank-Api.csproj"
+          projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api/viBank-Api.csproj"
 
+      - task: DotNetCoreCLI@2
+        displayName: "Run API Tests"
+        inputs:
+          command: "test"
+          projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBankApiTests/viBankApiTests.csproj"
+          publishTestResults: true
       - task: DotNetCoreCLI@2
         inputs:
           command: "publish"
-          publishWebProjects: true
-      - task: AzureWebApp@1
+          projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api/bin/Release"
+          zipAfterPublish: false
+          modifyOutputPath: false
+
+      - task: ArchiveFiles@2
         inputs:
-          azureSubscription: "Azure subscription 1"
-          appType: "webAppLinux"
-          appName: "vibank-api"
-          package: "$(Build.ArtifactStagingDirectory)/**/*.zip"
+          rootFolderOrFile: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api/bin/Release"
+          includeRootFolder: false
+          archiveType: "zip"
+          archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+          replaceExistingArchive: true
+
       - task: PublishPipelineArtifact@1
         displayName: "Publish API Artifact"
         inputs:
