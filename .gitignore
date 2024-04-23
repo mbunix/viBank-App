@@ -48,3 +48,6 @@ bld/
 .nuget/
 _Temporary/
 wp-content/
+dbproj/SqlDatabase/SqlDatabase.dbmdl
+dbproj/SqlDatabase/SqlDatabase.jfm
+dbproj/SqlDatabase/SqlDatabase.dbmdl
