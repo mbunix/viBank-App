@@ -71,7 +71,6 @@ jobs:
           projects: "**/*.sqlproj"
           arguments: "/p:NetCoreBuild=true"
           workingDirectory: "$(Build.SourcesDirectory)/dbproj/SqlDatabase"
-
       - task: ArchiveFiles@2
         displayName: "Archive DB build files"
         inputs:
