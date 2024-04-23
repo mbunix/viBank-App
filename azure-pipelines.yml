@@ -15,10 +15,18 @@ jobs:
           versionSpec: "18.x"
         displayName: "Install Nodejs"
       - script: |
-          cd vibank
-          npm install
+          cd Web/viBank-Ui/vibank
+          npm ci
+        displayName: "Npm CI"
+
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "18.x"
+        displayName: "Npm RUN BUILD"
+      - script: |
+          cd Web/viBank-Ui/vibank
+          ls -la
           npm run build
-        displayName: "Npm Run Build"
 
       - task: ArchiveFiles@2
         displayName: "Archive built ui files"
@@ -34,15 +42,16 @@ jobs:
         inputs:
           targetPath: "$(Build.ArtifactStagingDirectory)/vibank-ui-$(Build.BuildId).zip"
           artifact: "vibank-ui"
+      - script: |
+          cd ui/out
+        displayName: "UI Copy static file to out folder"
 
   - job: api_job
     steps:
       - task: DotNetCoreCLI@2
-        displayName: "dotnet build $(buildConfiguration)"
         inputs:
           command: "build"
-          arguments: "--configuration $(buildConfiguration)"
-          projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api/viBank-Api.csproj"
+          projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api"
 
       - task: DotNetCoreCLI@2
         displayName: "Run API Tests"
@@ -50,10 +59,12 @@ jobs:
           command: "test"
           projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBankApiTests/viBankApiTests.csproj"
           publishTestResults: true
+
       - task: DotNetCoreCLI@2
         inputs:
           command: "publish"
-          projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api/bin/Release"
+          projects: "$(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api"
+          arguments: "--output $(Build.SourcesDirectory)/viBank-Web/viBank-Api/viBank-Api/bin/Release"
           zipAfterPublish: false
           modifyOutputPath: false
 
