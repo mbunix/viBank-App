@@ -95,6 +95,7 @@ jobs:
           appType: "webAppLinux"
           appName: "vibank-api"
           package: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+
   - job: vibank_db_job
     steps:
       - task: DotNetCoreCLI@2
