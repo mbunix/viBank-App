@@ -55,7 +55,6 @@ jobs:
           appType: "webAppLinux"
           appName: "vibank-api"
           package: "$(Build.ArtifactStagingDirectory)/**/*.zip"
-
       - task: PublishPipelineArtifact@1
         displayName: "Publish API Artifact"
         inputs:
