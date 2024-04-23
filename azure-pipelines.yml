@@ -9,13 +9,14 @@ jobs:
     variables:
       environment: production
       buildConfiguration: "Release"
+      workingDirectory: Web/viBank-Web/viBank-Ui/vibank
     steps:
       - task: NodeTool@0
         inputs:
           versionSpec: "18.x"
         displayName: "Install Nodejs"
       - script: |
-          cd Web\viBank-Web\viBank-Ui\vibank
+          cd $(workingDirectory)
           npm ci
         displayName: "Npm CI"
 
@@ -24,7 +25,7 @@ jobs:
           versionSpec: "18.x"
         displayName: "Npm RUN BUILD"
       - script: |
-          cd Web\viBank-Web\viBank-Ui\vibank
+          cd $(workingDirectory)
           ls -la
           npm run build
 
