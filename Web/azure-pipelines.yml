@@ -44,7 +44,7 @@ jobs:
 
       - task: ArchiveFiles@2 # Assuming the build output directory is correct
         inputs:
-          rootFolderOrFile: "$(Build.ArtifactStagingDirectory)/Release"
+          rootFolderOrFile: "$(Build.SourcesDirectory)/ViBank-Web/viBank-Api/viBank-Api/bin/Release"
           includeRootFolder: false
           archiveType: "zip"
           archiveFile: $(Build.ArtifactStagingDirectory)/vibank-api-$(Build.BuildId).zip"
@@ -62,7 +62,7 @@ jobs:
         displayName: "Build Db Dacpac File"
         inputs:
           command: "build"
-          projects: "$(Build.SourcesDirectory)/SqlDatabase/SqlDatabase.sqlproj"
+          projects: "**/*.sqlproj"
           arguments: "/p:NetCoreBuild=true"
           workingDirectory: "$(Build.SourcesDirectory)/dbproj/SqlDatabase"
 
