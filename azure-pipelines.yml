@@ -32,10 +32,10 @@ jobs:
       - task: ArchiveFiles@2
         displayName: "Archive built ui files"
         inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)/Web/viBank-Web/viBank-Ui/vibank/out"
+          rootFolderOrFile: "$(Build.SourcesDirectory)"
           includeRootFolder: false
           archiveType: "zip"
-          archiveFile: "$(Build.ArtifactStagingDirectory)/vibank-ui-$(Build.BuildId).zip"
+          archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
           replaceExistingArchive: true
 
       - task: PublishPipelineArtifact@1
