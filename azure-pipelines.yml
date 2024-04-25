@@ -25,7 +25,7 @@ jobs:
           versionSpec: "18.x"
         displayName: "Npm RUN BUILD"
       - script: |
-          cd $(workingDirectory)
+          cd $(workingDirectory)/src
           ls-la
           npm run build
 
