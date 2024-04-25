@@ -61,7 +61,7 @@ const Home = () => {
                   </article>
                </div>
                { isSigUpWindowOpen && <Card className="md:w-2xl p-8 w-[20%] h-[50%] shadow-2xl rounded-lg ">
-                  {<SignUpPage onClose={() => setIsSigUpWindowOpen(false)} />}
+                  {<SignUpPage/>}
                </Card>}
                   <div className=" mt-[-10%] banner rounded-lg">
                      <Image src={stars} alt="Stars" height={100} width={100} />

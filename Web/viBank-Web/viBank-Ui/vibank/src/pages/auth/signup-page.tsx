@@ -9,7 +9,7 @@ import { Image } from 'primereact/image';
         
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
-function SignUpPage({ onSubmit, onClose }: any) {
+function SignUpPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(true)
     const formik = useFormik({
@@ -44,7 +44,7 @@ function SignUpPage({ onSubmit, onClose }: any) {
         } else {
             setLoading(false)
         }
-    }, [getToken()])
+    }, [router])
 
     return (
         <div>
