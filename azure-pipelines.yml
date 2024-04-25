@@ -18,7 +18,6 @@ jobs:
       - script: |
           cd $(workingDirectory)
           npm ci
-          npm run build
         displayName: "Npm CI"
 
       - task: NodeTool@0
