@@ -10,7 +10,7 @@ import NavlistMenu from "@/Layouts/navigation/nav-items";
 import RootLayout from "@/Components/Layout";
 import LoginPage from "./auth/loginpage";
 import { Button } from "@material-tailwind/react";
-import SignUpPage from "./auth/signUpPage";
+import SignUpPage from "./auth/signup-page";
 
 
 const Home = () => {

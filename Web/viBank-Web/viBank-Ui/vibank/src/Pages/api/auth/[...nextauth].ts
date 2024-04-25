@@ -1,10 +1,11 @@
 import { NextApiHandler } from 'next';
 import NextAuth from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import prisma from '@/lib/prisma';
 import { JWT } from 'next-auth/jwt';
 import AzureADProvider from "next-auth/providers/azure-ad"
+
 import GoogleProvider from 'next-auth/providers/google';
+import prisma from '@/Utils/prisma';
 declare module "next-auth" {
     interface Session {
         accessToken: string,
@@ -23,17 +24,17 @@ declare module "next-auth" {
 
 const options = {
   providers: [
-    //    AzureADProvider({
-    //   name: 'microsoft',
-    //   clientId: process.env.AZURE_CLIENT_ID ?? 'undefined',
-    //   clientSecret: process.env.AZURE_CLIENT_SECRET ?? 'undefined',
-    //   tenantId: process.env.AZURE_TENANT_ID,
-    //   authorization: {
-    //     params: {
-    //       scope: 'api://ownscope/general openid profile email user.read ',
-    //     },
-    //   },
-    // }),
+       AzureADProvider({
+      name: 'microsoft',
+      clientId: process.env.AZURE_CLIENT_ID ?? 'undefined',
+      clientSecret: process.env.AZURE_CLIENT_SECRET ?? 'undefined',
+      tenantId: process.env.AZURE_TENANT_ID,
+      authorization: {
+        params: {
+          scope: 'api://ownscope/general openid profile email user.read ',
+        },
+      },
+    }),
     GoogleProvider({
         name: 'google',
         clientId: process.env.GOOGLE_CLIENT_ID ?? 'undefined',

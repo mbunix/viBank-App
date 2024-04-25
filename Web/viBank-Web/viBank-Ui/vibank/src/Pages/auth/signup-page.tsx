@@ -4,10 +4,11 @@ import * as Yup from 'yup';
 import { useRouter } from 'next/router';
 import { login } from '@/Services/auth/auth.service';
 import { getToken } from '@/constants/auth';
-
+import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 function SignUpPage({ onSubmit, onClose }: any) {
     const router = useRouter();
-     const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -34,17 +35,17 @@ function SignUpPage({ onSubmit, onClose }: any) {
             }
         },
     });
-     useEffect(() => {
-        if(getToken()) {
+    useEffect(() => {
+        if (getToken()) {
             router.push('/dashboard');
-        }else{
+        } else {
             setLoading(false)
         }
-    }, [])
+    }, [getToken()])
 
     return (
         <div>
-            <form onSubmit={formik.handleSubmit} className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96">
+            <form  className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96">
                 {/* Email input */}
                 <div className="flex flex-col gap-6 mb-1">
                     <div>
@@ -89,8 +90,6 @@ function SignUpPage({ onSubmit, onClose }: any) {
                         ) : null}
                     </div>
                 </div>
-
-                {/* Remember me checkbox */}
                 <div className="flex items-center mb-4">
                     <input
                         type="checkbox"
@@ -102,18 +101,12 @@ function SignUpPage({ onSubmit, onClose }: any) {
                     />
                     <label htmlFor="remember">
                         I agree to the&nbsp;
-                        <a href="/terms&conditions" className="font-medium text-gray-900">
-                            Terms and Conditions
-                        </a>
+                        <a href="/terms&conditions" className="font-medium text-gray-900">Terms and Conditions</a>
                     </label>
                 </div>
-
-                {/* Submit button */}
-                <button type="submit" className="w-full mt-6 py-3 rounded-lg bg-gray-900 text-white uppercase font-bold">
+                <Button type="submit" className="w-full mt-6 py-3 rounded-lg bg-gray-900 text-white uppercase font-bold" disabled={formik.isSubmitting} onClick={()=>formik.handleSubmit}>
                     Sign Up
-                </button>
-
-                {/* Sign-in link */}
+                </Button>
                 <p className="text-center mt-4">
                     Already have an account?
                     <a href="/sign-in" className="text-gray-900 font-medium">
@@ -121,7 +114,9 @@ function SignUpPage({ onSubmit, onClose }: any) {
                     </a>
                 </p>
             </form>
+             {loading && <CircularProgress />}
         </div>
+       
     );
 }
 

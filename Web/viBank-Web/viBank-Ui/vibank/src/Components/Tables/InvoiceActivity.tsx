@@ -1,6 +1,6 @@
-import React from 'react'
-import { DataGrid } from '@mui/x-data-grid'
-import { invoiceData } from '@/Dummy/Data'
+import React from 'react';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { invoiceData } from '@/Dummy/Data';
 import Image from "next/image";
 
 const InvoiceActivity = () => {
@@ -11,7 +11,8 @@ const InvoiceActivity = () => {
             profile: string;
         }
     }
-    const columns = [
+    
+    const columns: GridColDef[] = [
         {
             field: "invoiceNo",
             headerName: "Invoice Number",
@@ -28,11 +29,17 @@ const InvoiceActivity = () => {
             width: 150,
             renderCell: (params: RenderCellParams) => {
                 return (
-                    <div className="profileImage">
-                        <Image className="profileImage rounded-md" src={params.row.profile} alt="Profile Image" width={50} height={50} />
+                    <div>
+                        <Image
+                            src={params.row.profile}
+                            alt="profile"
+                            width={50}
+                            height={50}
+                            className="rounded-full"
+                        />
                     </div>
                 );
-            },
+            }
         },
         {
             field: "status",
@@ -49,14 +56,15 @@ const InvoiceActivity = () => {
             headerName: "Amount",
             width: 150
         }
-    ]
+    ];
+
     return (
         <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
             <p className='text-start font-semibold'>Requested services</p>
             <div style={{ width: '100%', overflowX: 'scroll' }}>
                 <DataGrid
                     rows={invoiceData}
-                    columns= {columns}
+                    columns={columns}
                     getRowId={(row: any) => row?.id}
                     checkboxSelection
                     sx={{
@@ -70,7 +78,7 @@ const InvoiceActivity = () => {
                 />
             </div>
         </div>
-    )
+    );
 }
 
-export default InvoiceActivity
+export default InvoiceActivity;

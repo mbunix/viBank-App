@@ -2,7 +2,6 @@ import httpService from "../shared/http.service";
 import { endpoints } from "../shared/endpoints";
 import { LoginRequest, LoginResponse, Roles, UserResponse, refreshTokenRequest, userRequest } from "../types";
 import { PrismaClient } from "@prisma/client";
-import prisma from "@/lib/prisma";
 
 const Prisma = new PrismaClient()
 
