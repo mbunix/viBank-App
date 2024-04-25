@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import Image from "next/image"
-import backgroundImage  from '../assets/Background.jpg';
+import { Card } from 'primereact/card';
 import stars from "../assets/starsPic.png";
 import hand from "../assets/handPic.png";
 import creditCard from "../assets/Credit_card.png";
@@ -19,7 +19,7 @@ const Home = () => {
    return (
       <><div className="w-[50%]">
          <NavlistMenu />
-          {isSigUpWindowOpen && <SignUpPage onClose={() => setIsSigUpWindowOpen(false)} />}
+         
       </div>
          <div>
             <section className="mt-[5%] flex justify-around align-center m-auto h-[100vh]">
@@ -60,14 +60,17 @@ const Home = () => {
                      </div>
                   </article>
                </div>
+               { isSigUpWindowOpen && <Card className="md:w-2xl p-8 w-[20%] h-[50%] shadow-2xl rounded-lg ">
+                  {<SignUpPage onClose={() => setIsSigUpWindowOpen(false)} />}
+               </Card>}
                   <div className=" mt-[-10%] banner rounded-lg">
                      <Image src={stars} alt="Stars" height={100} width={100} />
                       <ul className="flex justify-end align-center mt-[-15%]">
-                        <Button className="bg-[#1D1D1C] rounded-lg p-2 mr-5 font-bold text-white" onClick={() => setIsSigUpWindowOpen(true)} placeholder={"Sign Up"} >
+                        <Button className="bg-[#030303] rounded-lg p-2 mr-5 font-bold text-white" onClick={() => setIsSigUpWindowOpen(true)} placeholder={"Sign Up"} >
                            Open your account
                         </Button>
                         <li>
-                           <Button className="bg-white border-slate-300 rounded-lg p-2 font-bold text-black" onClick={() => setIsLoginWindowOpen(true)} placeholder={"Sign In"} >
+                           <Button className="bg-[#030303] border-slate-300 rounded-lg p-2 font-bold text-black" onClick={() => setIsLoginWindowOpen(true)} placeholder={"Sign In"} >
                               Sign In
                            </Button>
                         </li>

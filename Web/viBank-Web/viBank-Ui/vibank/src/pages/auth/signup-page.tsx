@@ -4,6 +4,9 @@ import * as Yup from 'yup';
 import { useRouter } from 'next/router';
 import { login } from '@/Services/auth/auth.service';
 import { getToken } from '@/constants/auth';
+
+import { Image } from 'primereact/image';
+        
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 function SignUpPage({ onSubmit, onClose }: any) {
@@ -48,6 +51,12 @@ function SignUpPage({ onSubmit, onClose }: any) {
             <form  className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96">
                 {/* Email input */}
                 <div className="flex flex-col gap-6 mb-1">
+                    <div className="flex justify-center align-center">
+                        <p className="text-2xl text-neutral-950 font-medium">Welcome to cardo Mobile Finance </p>
+                    </div >
+                    <div className="flex justify-center align-center">
+                        <Image src="dark-logo.svg" alt="Logo" className="w-40 " />
+                    </div>
                     <div>
                         <label className="block font-semibold leading-relaxed text-blue-gray-900">
                             Your Email

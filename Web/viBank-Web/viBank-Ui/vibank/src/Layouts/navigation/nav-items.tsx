@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import { Typography, MenuItem, Menu, MenuHandler, MenuList, Card } from "@material-tailwind/react";
 import logoImage from "../../assets/Logo.jpg";
-import Image from 'next/image';
+import { Image } from 'primereact/image';
+        
 export default function NavlistMenu() {
     const navListItems = [
         {
@@ -37,7 +38,7 @@ export default function NavlistMenu() {
     return (
         <nav className="flex justify-around align-center mt-8">
             <ul className="flex">
-                <Image src={logoImage} alt="logoImage" />
+                <Image src= 'dark-logo.svg' alt="logoImage" />
                 <li className="m-3 font-bold">
                     <a href="/home">
                         Cardo
