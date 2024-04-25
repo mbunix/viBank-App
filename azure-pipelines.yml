@@ -44,7 +44,7 @@ jobs:
           targetPath: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
           artifact: "vibank-ui"
       - script: |
-          cd ui/out
+          cd $(workingDirectory)/out
         displayName: "UI Copy static file to out folder"
   - job: api_job
     steps:
