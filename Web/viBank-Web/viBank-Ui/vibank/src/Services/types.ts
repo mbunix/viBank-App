@@ -11,7 +11,20 @@ export type LoginRequest = {
     email: string,
     password: string
 }
-
+export type userRequest = {
+    email: string
+}
+export type UserResponse = {
+    id: number,
+    username: string,
+    email: string,
+    roles: Roles[]
+    accessToken: string
+    refreshToken: string
+    expiresAt: Date
+    createdAt: Date
+    updatedAt: Date
+}
 export type LoginResponse = {
     token: string
 }

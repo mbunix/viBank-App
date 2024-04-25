@@ -31,9 +31,7 @@ export default function NavlistMenu() {
     ]
     const renderItems = navListItems.map(({ title,  link, description }) => (
         <a href={link} key={title} className="hover:bg-gray-100 p-2 rounded block text-lg font-black font-extrabold">
-            <MenuItem placeholder={title}>
-                <Typography variant="h6" color="blue-gray" className="mb-1 font-normal" children={title} placeholder={title} />
-            </MenuItem>
+            {title}
         </a>
     ));
     return (

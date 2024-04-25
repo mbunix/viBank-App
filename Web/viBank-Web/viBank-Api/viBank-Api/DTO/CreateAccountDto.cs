@@ -10,8 +10,12 @@ namespace viBank_Api.DTO
     public class CreateAccountDto
     {
         public AccountTypes accountTypes { get; set; } 
-        public Guid AccountID { get; set; } = new Account().AccountID;
-        public string userEmail { get; set; } = new UserModel().Email;
+        public Guid AccountID { get; set; }
+        public string userEmail { get; set; }
+
         public double balance { get; set; }
+        public DateTime CreatedAtDTM { get; set; }
+        public DateTime UpdatedAtDTM { get; set;}
     }
+    
 }

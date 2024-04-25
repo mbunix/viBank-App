@@ -25,7 +25,8 @@ namespace viBank_Api.Services.AccountsService
             account.AccountID = newAccount.AccountID;
             account.balance = newAccount.AccountBalance;
             account.userEmail = account.userEmail;
-
+            account.CreatedAtDTM = DateTime.UtcNow;
+            account.UpdatedAtDTM = new DateTime();
             return account;
 
         }

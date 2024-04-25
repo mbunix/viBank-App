@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router';
+import { login } from '@/Services/auth/auth.service';
+import { getToken } from '@/constants/auth';
+
 function SignUpPage({ onSubmit, onClose }: any) {
-    const [showPassword, setShowPassword] = useState(false);
+    const router = useRouter();
+     const [loading, setLoading] = useState(true)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -15,11 +19,28 @@ function SignUpPage({ onSubmit, onClose }: any) {
             password: Yup.string().min(8, 'Password must be at least 8 characters').required('Required'),
             remember: Yup.boolean(),
         }),
-        onSubmit: values => {
-            onSubmit(values);
-            onClose(); // Close the sign-up page upon successful submission
+        onSubmit: async (values, { setSubmitting }) => {
+            try {
+                const res: any = await login(values);
+                let token = res.data?.token;
+                if (token) {
+                    const url = router.query?.redirect as string || '/dashboard';
+                    router.push(url);
+                }
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setSubmitting(false);
+            }
         },
     });
+     useEffect(() => {
+        if(getToken()) {
+            router.push('/dashboard');
+        }else{
+            setLoading(false)
+        }
+    }, [])
 
     return (
         <div>
@@ -40,7 +61,10 @@ function SignUpPage({ onSubmit, onClose }: any) {
                             value={formik.values.email}
                         />
                         {formik.touched.email && formik.errors.email ? (
-                            <div className="text-red-500">{formik.errors.email}</div>
+                            <div className="text-red-500">
+                                {
+                                    formik.errors.email as string
+                                }</div>
                         ) : null}
                     </div>
 
@@ -59,7 +83,9 @@ function SignUpPage({ onSubmit, onClose }: any) {
                             value={formik.values.password}
                         />
                         {formik.touched.password && formik.errors.password ? (
-                            <div className="text-red-500">{formik.errors.password}</div>
+                            <div className="text-red-500">{
+                                formik.errors.password as string
+                            }</div>
                         ) : null}
                     </div>
                 </div>

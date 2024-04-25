@@ -19,6 +19,7 @@ const Home = () => {
    return (
       <><div className="w-[50%]">
          <NavlistMenu />
+          {isSigUpWindowOpen && <SignUpPage onClose={() => setIsSigUpWindowOpen(false)} />}
       </div>
          <div>
             <section className="mt-[5%] flex justify-around align-center m-auto h-[100vh]">
@@ -59,8 +60,7 @@ const Home = () => {
                      </div>
                   </article>
                </div>
-               <div className="flex-1 h-[50%]   banner">
-                  <div className=" m-auto">
+                  <div className=" mt-[-10%] banner rounded-lg">
                      <Image src={stars} alt="Stars" height={100} width={100} />
                       <ul className="flex justify-end align-center mt-[-15%]">
                         <Button className="bg-[#1D1D1C] rounded-lg p-2 mr-5 font-bold text-white" onClick={() => setIsSigUpWindowOpen(true)} placeholder={"Sign Up"} >
@@ -72,15 +72,16 @@ const Home = () => {
                            </Button>
                         </li>
                      </ul>
-                     <Image src={hand} alt="Hand" className="rounded-lg m-auto " />
-                  </div>
-                  <div className="creditCard">
+                  <Image src={hand} alt="Hand" className="rounded-lg m-auto " height={-10} width={450}/>
+                    <div className="creditCard">
                      <Image src={creditCard} alt="credit card" />
                   </div>
-               </div>
+                  </div>
+                
+               
             </section>
          </div>
-         {isSigUpWindowOpen && <SignUpPage onClose={() => setIsSigUpWindowOpen(false)} />}
+        
          {isLoginWindowOpen && <LoginPage />}
       </>         
    )

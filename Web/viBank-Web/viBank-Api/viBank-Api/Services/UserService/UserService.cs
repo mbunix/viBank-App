@@ -8,7 +8,6 @@ using viBank_Api.DTO;
 using viBank_Api.Helpers;
 using viBank_Api.Models;
 using viBank_Api.Services.AccountsService;
-using AccountTypes = viBank_Api.DTO.AccountTypes;
 
 namespace viBank_Api.Services.UserService
 {
@@ -35,22 +34,27 @@ namespace viBank_Api.Services.UserService
             {
                 UserName = newUserDto.UserName,
                 Email = newUserDto.Email,
-                PasswordHash = PasswordHelper.HashPassword(newUserDto.Password),
+                PasswordHash= PasswordHelper.HashPassword(newUserDto.Password),
                 RoleID = newUserDto.RoleID,
-                CreatedDTM = DateTime.UtcNow
+                CreatedDTM = DateTime.UtcNow,
+                IsDeleted =false,
+                UserID = newUserDto.UserID
             };
             var defaultAccount = new CreateAccountDto
             {
                 accountTypes = AccountTypes.Current,
                 AccountID = Guid.NewGuid(),
                 userEmail = newUser.Email,
-                balance = 0 
+                balance = 0,
+                CreatedAtDTM = DateTime.UtcNow,
+                UpdatedAtDTM = new DateTime()
+                
             };
             var addedAccount = await _accountsService.AddAccount(defaultAccount);
             newUser.Account = new Account
             {
                 AccountID = addedAccount.AccountID,
-                UserID = newUser.ID,
+                UserID = newUser.UserID ,
                 AccountType = (Models.AccountTypes)addedAccount.accountTypes,
                 AccountBalance = addedAccount.balance
             };

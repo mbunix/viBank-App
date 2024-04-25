@@ -12,9 +12,9 @@ namespace viBank_Api.Models
         public Guid ATMID { get; set; }
         public TransactionType transactionType { get; set; }
         public double Amount { get; set; }
-        public string? OriginAccountNumber { get; set; }
-        public string? DestinationAccountNumber { get; set; }
-        public Guid AccountID { get; set; } = new Account().AccountID;
+        public long? OriginAccountNumber { get; set; }
+        public long? DestinationAccountNumber { get; set; }
+        public long AccountID { get; set; } = new Account().ID;
         public DateTime TransactionDate { get; set; }
         public ATMs ATMs { get; set; }
     }

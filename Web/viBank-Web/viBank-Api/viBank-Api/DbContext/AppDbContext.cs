@@ -40,8 +40,7 @@ namespace viBank_Api
 
 
             });
-
-            
+           
         }
     }
 }

@@ -1,0 +1,1 @@
+export const TOKEN_NAME = '_Secure-sid';

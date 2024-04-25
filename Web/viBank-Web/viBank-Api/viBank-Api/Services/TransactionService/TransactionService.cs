@@ -22,7 +22,7 @@ namespace viBank_Api.Services.TransactionService
             account.AccountBalance += transactions.Amount;
             var transaction = new Transactions
             {
-                AccountID = account.AccountID,
+                AccountID = account.ID,
                 TransactionID = Guid.NewGuid(),
                 Amount = transactions.Amount,
                 transactionType = TransactionType.Deposit,
@@ -60,7 +60,7 @@ namespace viBank_Api.Services.TransactionService
                 DestinationAccountNumber = destinationAccount.AccountNumber,
                 TransactionID = Guid.NewGuid(),
                 Amount = transactions.Amount,
-                AccountID = originAccount.AccountID,
+                AccountID = originAccount.ID,
                 transactionType = TransactionType.Transfers,
                 TransactionDate = DateTime.UtcNow
             };

@@ -12,7 +12,7 @@ namespace viBank_Api.Helpers
         public string? Email { get; set; }
         public long? RoleID { get; set; }
         public string? UserName { get; set; }
-        public string? AccountNumber { get; set; }
+        public long? AccountNumber { get; set; }
     }
     public enum UserRoles
     {

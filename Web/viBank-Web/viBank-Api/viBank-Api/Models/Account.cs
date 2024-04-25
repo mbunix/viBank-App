@@ -11,13 +11,13 @@ namespace viBank_Api.Models
         public long ID { get; set; }
 
         public Guid AccountID { get; set; }
-        public string? AccountNumber { get; set; }
+        public long? AccountNumber { get; set; }
 
         public AccountTypes AccountType { get; set; }
 
         public double AccountBalance { get; set; }
-        public long UserID { get; set; }
-        public string UserEmail { get; set; } = new UserModel().Email;
+        public Guid UserID { get; set; }
+        public string UserEmail { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreatedDTM { get; set; }
         public DateTime UpdatedDTM { get; set; }
