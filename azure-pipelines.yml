@@ -41,7 +41,7 @@ jobs:
       - task: PublishPipelineArtifact@1
         displayName: "Publish Ui Artifacts"
         inputs:
-          targetPath: "$(Build.ArtifactStagingDirectory)/vibank-ui-$(Build.BuildId).zip"
+          targetPath: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
           artifact: "vibank-ui"
       - script: |
           cd ui/out
