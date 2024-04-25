@@ -70,7 +70,7 @@ const Home = () => {
                            Open your account
                         </Button>
                         <li>
-                           <Button className="bg-[#030303] border-slate-300 rounded-lg p-2 font-bold text-black" onClick={() => setIsLoginWindowOpen(true)} placeholder={"Sign In"} >
+                           <Button className="bg-white border-slate-300 rounded-lg p-2 font-bold text-black" onClick={() => setIsLoginWindowOpen(true)} placeholder={"Sign In"} >
                               Sign In
                            </Button>
                         </li>
