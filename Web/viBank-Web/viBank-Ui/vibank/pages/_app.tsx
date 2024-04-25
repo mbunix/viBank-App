@@ -1,5 +1,5 @@
 import { AppProps } from "next/app";
-import '../Styles/globals.css'
+import "../styles/globals.css";
 // import '@material-tailwind/react/tailwind.css'
 import { Provider } from "react-redux";
 import { makeStore } from "@/lib/store";

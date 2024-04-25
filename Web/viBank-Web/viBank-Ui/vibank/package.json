@@ -25,7 +25,7 @@
     "font-awesome-icons": "^1.6.0",
     "formik": "^2.4.5",
     "fs": "^0.0.1-security",
-    "next": "14.1.0",
+    "next": "14.2",
     "next-auth": "^4.24.7",
     "primeicons": "^7.0.0",
     "primereact": "^10.6.3",
