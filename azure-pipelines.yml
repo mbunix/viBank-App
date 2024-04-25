@@ -18,9 +18,17 @@ jobs:
       - script: |
           cd $(workingDirectory)
           npm ci
-          cd $(workingDirectory)/src
           npm run build
-        displayName: "Npm CI& NPM Run Build"
+        displayName: "Npm CI"
+
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "18.x"
+        displayName: "NPM RUN BUILD"
+      - script: |
+          cd $(workingDirectory)
+          ls -la
+          npm run build
 
       - task: ArchiveFiles@2
         displayName: "Archive built ui files"
