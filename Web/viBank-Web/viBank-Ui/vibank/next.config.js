@@ -6,6 +6,9 @@ const nextConfig = {
         ? process.env.VIBANK_API_URL
         : 'http://localhost:5000'
   },
-  output: 'export'
+  output: 'export',
+  images: {
+    unoptimized: true
+  }
 }
 module.exports = nextConfig
