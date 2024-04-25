@@ -18,6 +18,7 @@ jobs:
       - script: |
           cd $(workingDirectory)
           npm ci
+          cd $(workingDirectory)/src
           npm run build
         displayName: "Npm CI& NPM Run Build"
 
