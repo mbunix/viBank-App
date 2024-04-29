@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "viBank-Api", "viBank-Api\vi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "viBankApiTests", "viBankApiTests\viBankApiTests.csproj", "{CD87EEE0-9433-403E-A92C-D5C412458128}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "vibank-db", "..\..\..\dbproj\vibank-db\vibank-db.sqlproj", "{E161B6FC-B1B0-48C7-8F6C-8964341FA044}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{CD87EEE0-9433-403E-A92C-D5C412458128}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD87EEE0-9433-403E-A92C-D5C412458128}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD87EEE0-9433-403E-A92C-D5C412458128}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E161B6FC-B1B0-48C7-8F6C-8964341FA044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E161B6FC-B1B0-48C7-8F6C-8964341FA044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E161B6FC-B1B0-48C7-8F6C-8964341FA044}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E161B6FC-B1B0-48C7-8F6C-8964341FA044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E161B6FC-B1B0-48C7-8F6C-8964341FA044}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E161B6FC-B1B0-48C7-8F6C-8964341FA044}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
