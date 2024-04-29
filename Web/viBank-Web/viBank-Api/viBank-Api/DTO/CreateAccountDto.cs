@@ -12,7 +12,7 @@ namespace viBank_Api.DTO
         public AccountTypes accountTypes { get; set; } 
         public Guid AccountID { get; set; }
         public string userEmail { get; set; }
-
+        public long AccountNumber { get; set; }
         public double balance { get; set; }
         public DateTime CreatedAtDTM { get; set; }
         public DateTime UpdatedAtDTM { get; set;}

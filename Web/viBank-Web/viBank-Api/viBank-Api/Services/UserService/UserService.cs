@@ -37,12 +37,12 @@ namespace viBank_Api.Services.UserService
                 PasswordHash= PasswordHelper.HashPassword(newUserDto.Password),
                 RoleID = newUserDto.RoleID,
                 CreatedDTM = DateTime.UtcNow,
-                IsDeleted =false,
                 UserID = newUserDto.UserID
             };
             var defaultAccount = new CreateAccountDto
             {
                 accountTypes = AccountTypes.Current,
+                AccountNumber = new Random().Next(),
                 AccountID = Guid.NewGuid(),
                 userEmail = newUser.Email,
                 balance = 0,
@@ -55,6 +55,7 @@ namespace viBank_Api.Services.UserService
             {
                 AccountID = addedAccount.AccountID,
                 UserID = newUser.UserID ,
+                AccountNumber = addedAccount.AccountNumber,
                 AccountType = (Models.AccountTypes)addedAccount.accountTypes,
                 AccountBalance = addedAccount.balance
             };

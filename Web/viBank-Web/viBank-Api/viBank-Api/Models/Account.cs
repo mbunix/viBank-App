@@ -17,8 +17,7 @@ namespace viBank_Api.Models
 
         public double AccountBalance { get; set; }
         public Guid UserID { get; set; }
-        public string UserEmail { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public string UserEmail { get; set; } = new UserModel().Email;
         public DateTime CreatedDTM { get; set; }
         public DateTime UpdatedDTM { get; set; }
 

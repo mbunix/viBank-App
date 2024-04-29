@@ -16,6 +16,7 @@ namespace viBank_Api.Services.AccountsService
                 AccountID = account.AccountID,
                 AccountType = (Models.AccountTypes)account.accountTypes,
                 UserEmail = account.userEmail,
+                AccountNumber = account.AccountNumber,
                 AccountBalance = account.balance,
                 CreatedDTM = DateTime.UtcNow,
                 UpdatedDTM = new DateTime()

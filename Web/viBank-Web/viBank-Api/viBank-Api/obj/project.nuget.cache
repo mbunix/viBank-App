@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kPvGgIT6qFuVOJDGlaA4YcLBHTMrwU0fnU+D89ucVsSea5C4t7p+kvBYxAaGKQLMjvTZa3F/YQnu6EEQvUKrbA==",
+  "dgSpecHash": "JS+cQqeJicsID6iURM02J4sAs4fX4K4ag7/mWBTclotiSmLnxl/B1eCZ7CfutUXxMQoVrOkk40U3k1P7Ctcd6A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\web\\vibank-web\\vibank-api\\vibank-api\\viBank-Api.csproj",
+  "projectFilePath": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\Web\\viBank-Web\\viBank-Api\\viBank-Api\\viBank-Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

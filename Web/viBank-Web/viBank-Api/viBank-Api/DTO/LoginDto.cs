@@ -9,13 +9,9 @@ namespace viBank_Api.DTO
 {
     public class LoginRequestDto
     {
-        [Required(ErrorMessage = "UserName is required"), EmailAddress(ErrorMessage = "Invalid Email Address")]
+      
         public string UserName { get; set; } = string.Empty;
-
-        [EmailAddress]
-        [Required]
         public string Email { get; set; } = string.Empty;
-        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; } = string.Empty;
         public bool RememberMe { get; set; }
         public string? ReturnUrl { get; set; }
@@ -23,7 +19,6 @@ namespace viBank_Api.DTO
     }
     public class ForgotPasswordDto
     {
-        [Required(ErrorMessage = "Email is required")]
         public string[] Email { get; set; } = Array.Empty<string>();
         public string? BaseUrl { get; set; }
     }

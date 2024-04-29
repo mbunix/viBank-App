@@ -21,9 +21,8 @@ namespace viBank_Api.Models
         //public Partner? Partner { get; set; }
         //public Distributor? Distributor { get; set; }
         public Account? Account { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreatedDTM { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; } = false;
         public long? DeletedBy { get; set; }
         public DateTime? DeletedDTM { get; set; }
         [Timestamp]
