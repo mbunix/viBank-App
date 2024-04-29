@@ -1,8 +1,10 @@
-
+﻿
 /* seed available ATMS */
 
 SET IDENTITY_INSERT [dbo].[ATMs] ON;
 ;
+GO
+
 WITH availableATMs AS (
     SELECT *
     FROM (VALUES 
@@ -23,9 +25,11 @@ WHEN MATCHED THEN
         Target.[isActive] = Source.[isActive],
         Target.[CreatedDTM] = Source.[CreatedDTM],
         Target.[isDeleted] = Source.[isDeleted];
+GO
 
 SET IDENTITY_INSERT [dbo].[ATMs] OFF;
 
 
 
 -- /* SEED  */
+GO

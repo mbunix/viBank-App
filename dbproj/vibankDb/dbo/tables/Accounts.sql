@@ -1,13 +1,13 @@
-﻿CREATE TABLE [dbo].[Accounts]
-(
-    [ID] BIGINT IDENTITY(1,1) NOT NULL,
-    [AccountID] UNIQUEIDENTIFIER NOT NULL,
-    [AccountNumber] NVARCHAR(50) NOT NULL PRIMARY KEY,
-    [AccountType] NVARCHAR(255) NOT NULL,
-    [AccountBalance] DECIMAL(10,2) NULL,
-    [UpdatedDTM] DATETIME NULL,
-    [DeletedDTM] DATETIME2 NULL,
-    [RowVersion] ROWVERSION,
-    [UserID] BIGINT NOT NULL, -- Modify to NOT NULL,
-    CONSTRAINT FK_Account_UserID FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([ID]) -- Rename the foreign key constraint
-)
+﻿CREATE TABLE [dbo].[account] (
+    [ID]             BIGINT           IDENTITY (1, 1) NOT NULL,
+    [AccountID]      UNIQUEIDENTIFIER NOT NULL,
+    [AccountNumber]  BIGINT           NULL,
+    [AccountType]    INT              NOT NULL,
+    [AccountBalance] FLOAT (53)       NOT NULL,
+    [UserID]         UNIQUEIDENTIFIER NOT NULL,
+    [UserEmail]      NVARCHAR (MAX)   NULL,
+    [CreatedDTM]     DATETIME2 (7)    NULL,
+    [UpdatedDTM]     DATETIME2 (7)    NULL,
+    CONSTRAINT [PK_account] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+
