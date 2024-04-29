@@ -88,13 +88,13 @@ jobs:
         displayName: "Build Db Dacpac File"
         inputs:
           command: "build"
-          projects: "$(Build.SourcesDirectory)/dbproj/vibankDb/vibankDb.sqlproj"
+          projects: "$(Build.SourcesDirectory)/dbproj/vibankDb/vibank-db.sqlproj"
           arguments: "/p:NetCoreBuild=true"
 
       - task: ArchiveFiles@2
         displayName: "Archive DB build files"
         inputs:
-          rootFolderOrFile: "$(Build.SourcesDirectory)/dbproj/vibankDb/bin/Debug"
+          rootFolderOrFile: "$(Build.SourcesDirectory)/dbproj/vibank-db/bin/Debug"
           includeRootFolder: false
           archiveType: zip
           archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
