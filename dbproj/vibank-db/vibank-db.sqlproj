@@ -2,13 +2,21 @@
 <Project DefaultTargets="Build">
   <Sdk Name="Microsoft.Build.Sql" Version="0.1.12-preview" />
   <PropertyGroup>
-    <Name>vibankDb</Name>
-    <ProjectGuid>{7899EA60-A229-46F7-8598-412B39CBC2B9}</ProjectGuid>
+    <Name>vibank-db</Name>
+    <ProjectGuid>{E161B6FC-B1B0-48C7-8F6C-8964341FA044}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
     <ModelCollation>1033, CI</ModelCollation>
   </PropertyGroup>
-   <ItemGroup>
-    <PackageReference Include="Microsoft.SqlServer.DacFx" Version="12.0.2603.2" />
+  <ItemGroup>
+    <Folder Include="dbo" />
+    <Folder Include="dbo\scripts" />
+    <Folder Include="dbo\tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="dbo\scripts\pre-deployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="dbo\scripts\post-deployment.sql" />
   </ItemGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />

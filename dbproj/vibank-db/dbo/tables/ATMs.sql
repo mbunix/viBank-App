@@ -1,5 +1,6 @@
-﻿CREATE TABLE [dbo].[ATMs] (
-    [ID]              BIGINT           IDENTITY (1, 1) NOT NULL,
+CREATE TABLE [dbo].[ATMs]
+(
+     [ID]              BIGINT           IDENTITY (1, 1) NOT NULL,
     [ATMID]           UNIQUEIDENTIFIER NOT NULL,
     [Location]        NVARCHAR (MAX)   NOT NULL,
     [AvailbleBalance] DECIMAL (18, 2)  NOT NULL,
@@ -11,4 +12,4 @@
     [CreatedBy]       BIGINT           NOT NULL,
     [UpdatedBy]       BIGINT           NOT NULL,
     CONSTRAINT [PK_ATMs] PRIMARY KEY CLUSTERED ([ATMID] ASC)
-);
+)
