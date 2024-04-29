@@ -88,7 +88,7 @@ jobs:
         displayName: "Build Db Dacpac File"
         inputs:
           command: "build"
-          projects: "$(Build.SourcesDirectory)/dbproj/vibankDb/vibank-db.sqlproj"
+          projects: "$(Build.SourcesDirectory)/dbproj/vibank-db/vibank-db.sqlproj"
           arguments: "/p:NetCoreBuild=true"
 
       - task: ArchiveFiles@2
