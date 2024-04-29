@@ -39,11 +39,6 @@ export default function NavlistMenu() {
         <nav className="flex justify-around align-center mt-8">
             <ul className="flex">
                 <Image src= 'dark-logo.svg' alt="logoImage" />
-                <li className="m-3 font-bold">
-                    <a href="/home">
-                        Cardo
-                    </a>
-                </li>
             </ul>
             <ul className="flex ">
                 {renderItems}

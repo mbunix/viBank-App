@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\Web\\viBank-Web\\viBank-Api\\viBank-Api\\viBank-Api.csproj": {}
+    "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\web\\vibank-web\\vibank-api\\vibank-api\\viBank-Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\Web\\viBank-Web\\viBank-Api\\viBank-Api\\viBank-Api.csproj": {
+    "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\web\\vibank-web\\vibank-api\\vibank-api\\viBank-Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\Web\\viBank-Web\\viBank-Api\\viBank-Api\\viBank-Api.csproj",
+        "projectUniqueName": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\web\\vibank-web\\vibank-api\\vibank-api\\viBank-Api.csproj",
         "projectName": "viBank-Api",
-        "projectPath": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\Web\\viBank-Web\\viBank-Api\\viBank-Api\\viBank-Api.csproj",
+        "projectPath": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\web\\vibank-web\\vibank-api\\vibank-api\\viBank-Api.csproj",
         "packagesPath": "C:\\Users\\BellianBrianOtieno\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\Web\\viBank-Web\\viBank-Api\\viBank-Api\\obj\\",
+        "outputPath": "C:\\Users\\BellianBrianOtieno\\personals2\\AWS ops\\web\\vibank-web\\vibank-api\\vibank-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\BellianBrianOtieno\\AppData\\Roaming\\NuGet\\NuGet.Config",
