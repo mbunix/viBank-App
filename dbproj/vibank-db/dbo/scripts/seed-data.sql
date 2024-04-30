@@ -27,12 +27,12 @@ USING AVAILABLEATMS AS SOURCE
 ON SOURCE.ID = TARGET.ID
 WHEN NOT MATCHED BY TARGET THEN
     INSERT (
-                [ATMID]
-                [Location]
-                [AvailableBalance]
-                [TransactionID]
-                [IsActive]
-                [CreatedDTM]
+                [ATMID],
+                [Location],
+                [AvailableBalance],
+                [TransactionID],
+                [IsActive],
+                [CreatedDTM],
                 [IsDeleted]
     )
     VALUES (

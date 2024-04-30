@@ -16,11 +16,11 @@ RUN wget -progress=bar:force -q -O sqlpackage.zip https://go.microsoft.com/fwlin
     && chmod +x /opt/sqlpackage/sqlpackage
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR ./
+WORKDIR /vibank-db
 COPY  ./dbo/ ./
 COPY ./dbo/scripts/post-deployment.sql ./
 COPY ./dbo/scripts/seed-data.sql ./
-COPY ./SqlDatabase.sqlproj ./
+COPY ./vibank-db.sqlproj ./
 RUN dotnet remove package Microsoft.SqlServer.DacFx
 RUN dotnet add package Microsoft.SqlServer.DacFx -v 12.0.2603.2
 RUN dotnet build
