@@ -1,25 +1,41 @@
-SET IDENTITY_INSERT [dbo].[ATMs] ON;
-GO
-
-WITH availableATMs AS (
-    SELECT *
-    FROM (VALUES 
-        (1, '758bb331-e613-46bb-82c4-9191ec2ee826', 'TorontoCA', 2000000.00, 1, GETDATE(), 0)
-    ) AS val (ID, ATMID, Location, AvailableBalance, isActive, CreatedDTM, isDeleted)
-)
-MERGE [dbo].[ATMs] AS Target
-USING availableATMs AS Source
-ON Source.ID = Target.ID
-WHEN NOT MATCHED BY Target THEN
-    INSERT ([ID], [ATMID], [Location], [AvailableBalance], [isActive], [CreatedDTM], [isDeleted])
-    VALUES (Source.[ID], Source.[ATMID], Source.[Location], Source.[AvailableBalance], Source.[isActive], Source.[CreatedDTM], Source.[isDeleted])
-WHEN MATCHED THEN
-    UPDATE
-    SET Target.[ATMID] = Source.[ATMID],
-        Target.[Location] = Source.[Location],
-        Target.[AvailableBalance] = Source.[AvailableBalance],
-        Target.[isActive] = Source.[isActive],
-        Target.[CreatedDTM] = Source.[CreatedDTM],
-        Target.[isDeleted] = Source.[isDeleted];
-
-SET IDENTITY_INSERT [dbo].[ATMs] OFF;
+BEGIN
+    TRANSACTION;
+    SET IDENTITY_INSERT [DBO].[ATMS] ON;
+    GO WITH AVAILABLEATMS AS (
+        SELECT
+            *
+        FROM
+            (VALUES (1,
+            '758bb331-e613-46bb-82c4-9191ec2ee826',
+            'TorontoCA',
+            2000000.00,
+            1,
+            GETDATE(),
+            0) ) AS VAL (ID,
+            ATMID,
+            LOCATION,
+            AVAILABLEBALANCE,
+            ISACTIVE,
+            CREATEDDTM,
+            ISDELETED)
+    ) MERGE [DBO].[ATMS] AS TARGET USING AVAILABLEATMS AS SOURCE ON SOURCE.ID = TARGET.ID WHEN NOT MATCHED BY TARGET THEN
+        INSERT (
+            [ID],
+            [ATMID],
+            [LOCATION],
+            [AVAILABLEBALANCE],
+            [ISACTIVE],
+            [CREATEDDTM],
+            [ISDELETED]
+        ) VALUES (
+            SOURCE.[ID],
+            SOURCE.[ATMID],
+            SOURCE.[LOCATION],
+            SOURCE.[AVAILABLEBALANCE],
+            SOURCE.[ISACTIVE],
+            SOURCE.[CREATEDDTM],
+            SOURCE.[ISDELETED]
+        )
+            WHEN MATCHED THEN UPDATE SET TARGET.[ATMID] = SOURCE.[ATMID], TARGET.[LOCATION] = SOURCE.[LOCATION], TARGET.[AVAILABLEBALANCE] = SOURCE.[AVAILABLEBALANCE], TARGET.[ISACTIVE] = SOURCE.[ISACTIVE], TARGET.[CREATEDDTM] = SOURCE.[CREATEDDTM], TARGET.[ISDELETED] = SOURCE.[ISDELETED];
+        GO SET IDENTITY_INSERT [DBO].[ATMS] OFF;
+        COMMIT TRANSACTION;
