@@ -18,9 +18,6 @@
   <ItemGroup>
     <PostDeploy Include="dbo\scripts\post-deployment.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <Build Include="DockerFile" />
-  </ItemGroup>
   <Target Name="BeforeBuild">
     <Delete Files="$(BaseIntermediateOutputPath)\project.assets.json" />
   </Target>
