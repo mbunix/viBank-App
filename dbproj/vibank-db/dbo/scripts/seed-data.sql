@@ -22,8 +22,7 @@ WITH AVAILABLEATMS AS (
                 IsActive,
                 CreatedDTM,
                 IsDeleted)
-)
-MERGE [dbo].[ATMs] AS TARGET
+) MERGE [dbo].[ATMs] AS TARGET
 USING AVAILABLEATMS AS SOURCE
 ON SOURCE.ID = TARGET.ID
 WHEN NOT MATCHED BY TARGET THEN
@@ -55,7 +54,7 @@ WHEN MATCHED THEN
     TARGET.[IsActive] = SOURCE.[IsActive],
     TARGET.[CreatedDTM] = SOURCE.[CreatedDTM],
     TARGET.[IsDeleted] = SOURCE.[IsDeleted];
-
+;
 SET IDENTITY_INSERT [dbo].[ATMs] OFF;
 
 COMMIT TRANSACTION;
