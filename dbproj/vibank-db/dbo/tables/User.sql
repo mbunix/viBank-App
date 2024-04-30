@@ -17,19 +17,8 @@ CREATE TABLE [dbo].[User] (
     [IsDeleted]              BIT              NOT NULL,
     [DeletedBy]              BIGINT           NULL,
     [DeletedDTM]             DATETIME2 (7)    NULL,
-    [RowVersion]             ROWVERSION       NULL
+    [RowVersion]             ROWVERSION       NULL,
+    CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([ID] ASC),
 );
-GO
-
-ALTER TABLE [dbo].[User]
-    ADD CONSTRAINT [FK_User_account_AccountID] FOREIGN KEY ([AccountID]) REFERENCES [dbo].[account] ([ID]);
-GO
-
-ALTER TABLE [dbo].[User]
-    ADD CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([ID] ASC);
-GO
-
-CREATE NONCLUSTERED INDEX [IX_User_AccountID]
-    ON [dbo].[User]([AccountID] ASC);
 GO
 

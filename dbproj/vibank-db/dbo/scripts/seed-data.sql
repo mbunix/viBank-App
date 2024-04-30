@@ -26,7 +26,7 @@ WITH AVAILABLEATMS AS (
 USING AVAILABLEATMS AS SOURCE
 ON SOURCE.ID = TARGET.ID
 WHEN NOT MATCHED BY TARGET THEN
-    INSERT (
+    INSERT (    [ID],
                 [ATMID],
                 [Location],
                 [AvailableBalance],
