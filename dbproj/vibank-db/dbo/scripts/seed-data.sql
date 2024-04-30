@@ -40,7 +40,7 @@ WHEN NOT MATCHED BY TARGET THEN
     SOURCE.[ATMID],
     SOURCE.[Location],
     SOURCE.[AvailableBalance],
-    SOURCE.[TransactionID]
+    SOURCE.[TransactionID],
     SOURCE.[IsActive],
     SOURCE.[CreatedDTM],
     SOURCE.[ISDeleted]
