@@ -11,8 +11,8 @@ namespace viBank_Api.DTO
         public string UserName { get; set; } = new UserModel().Email.Split('@').First();
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
-        public Guid UserID { get; set; }
-        public Account account { get; set; }
+        public Guid UserID { get; set; } = Guid.NewGuid();
+        protected Account account { get; set; }
         public  DateTime createdDTM {  get; set; }
         public DateTime updatedDTM {  get; set; }
         public long RoleID { get; set; }

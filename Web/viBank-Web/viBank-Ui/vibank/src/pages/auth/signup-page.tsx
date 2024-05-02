@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router';
-import { createUser, login } from '@/Services/auth/auth.service';
-import { getToken } from '@/constants/auth';
+import { getToken, setToken } from '@/constants/auth';
 import { Image } from 'primereact/image';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
+import httpService from '@/Services/shared/http.service';
+import { Token } from '@/Models/UserModel';
+import { createUser } from '@/Services/auth/auth.service';
+import { Account, AccountType } from '@/Models/AccountModel';
 function SignUpPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(true)
@@ -22,12 +25,16 @@ function SignUpPage() {
             password: Yup.string().min(8, 'Password must be at least 8 characters').required('Required'),
             remember: Yup.boolean(),
         }),
-        onSubmit: async (values, { setSubmitting }) => {
+        onSubmit: async (values: any, { setSubmitting}) => {
             
             try {
-                const res: any = await createUser(values);
-                let token = res.data?.token;
+                const username = values.email.split('@')[0];
+                const finalvalue = {...values, username};
+                const res: any = await createUser(finalvalue);
+                let token:Token = res?.data;
                 if (token) {
+                    httpService.setAuthorizationHeader(token?.token);
+                    setToken(token);
                     const url = router.query?.redirect as string || '/dashboard';
                     router.push(url);
                 }
@@ -44,15 +51,12 @@ function SignUpPage() {
         } else {
             setLoading(false)
         }
-    }, [router])
+    }, [router]);
 
     return (
         <div>
-            <form  className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96">
+            <form  className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96" onSubmit={formik.handleSubmit}>
                 <div className="flex flex-col gap-6 mb-1">
-                    <div className="flex justify-center align-center">
-                        <p className="text-2xl text-neutral-950 font-medium">Welcome to cardo Mobile Finance </p>
-                    </div >
                     <div className="flex justify-center align-center">
                         <Image src="dark-logo.svg" alt="Logo" className="w-40 " />
                     </div>
@@ -96,18 +100,6 @@ function SignUpPage() {
                             }</div>
                         ) : null}
                     </div>
-                    <div className="flex items-center mb-4">
-                        
-                        <input
-                            type="checkbox"
-                            id='username'
-                            name="username"
-                            className="mr-2"
-                            onChange={formik.handleChange}
-                            value={formik.values.email.split('@')[0]}
-                        />
-                        <label htmlFor="username" className=" font-medium  text-gray-900"> Confirm your Email as Your Username </label>
-                    </div>
                 </div>
                 <div className="flex items-center mb-4">
                     <input
@@ -123,12 +115,12 @@ function SignUpPage() {
                     <a href ="/terms&conditions" className="font-medium text-gray-900">Terms and Conditions</a>
                     </label>
                 </div>
-                <Button type="submit" className="w-full mt-6 py-3 rounded-lg bg-gray-900 text-white uppercase font-bold" disabled={formik.isSubmitting} onClick={()=>formik.handleSubmit}>
+                <Button type="submit" className="w-full mt-6 py-3 rounded-lg bg-gray-900 text-white uppercase font-bold rounded-md " disabled={formik.isSubmitting}  >
                     Sign Up
                 </Button>
                     <p className="text-center mt-4">Already have an account? <a href="/sign-in" className = "text-gray-900 font-medium"> &nbsp;Sign In here</a>
                 </p>
-            </form>
+            </form >
              {loading && <CircularProgress />}
         </div>
        

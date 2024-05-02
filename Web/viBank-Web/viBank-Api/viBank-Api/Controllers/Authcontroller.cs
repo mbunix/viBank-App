@@ -10,7 +10,7 @@ using viBank_Api.Services.authService;
 namespace viBank_Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/auth")]
     public class Authcontroller : ControllerBase
     {
 

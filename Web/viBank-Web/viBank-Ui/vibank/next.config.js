@@ -4,7 +4,7 @@ const nextConfig = {
     viBankUrl:
       process.env.APP_ENV === 'production'
         ? process.env.VIBANK_API_URL
-        : 'http://localhost:5000'
+        : process.env.VIBANK_API_URL ?? 'http://localhost:5000'
   },
   output: 'export',
   images: {

@@ -60,7 +60,7 @@ const Home = () => {
                      </div>
                   </article>
                </div>
-               { isSigUpWindowOpen && <Card className="md:w-2xl p-8 w-[20%] h-[50%] shadow-2xl rounded-lg ">
+               { isSigUpWindowOpen && <Card className="md:w-2xl p-8 w-[30%] h-[85%] shadow-2xl rounded-lg ">
                   {<SignUpPage/>}
                </Card>}
                   <div className=" mt-[-10%] banner rounded-lg">

@@ -7,7 +7,7 @@ using viBank_Api.Services.UserService;
 
 namespace viBank_Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth/register")]
     [ApiController]
     public class RegistrationController : ControllerBase
     {

@@ -1,9 +1,8 @@
-import { NextApiHandler } from 'next';
+
 import NextAuth from 'next-auth';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { JWT } from 'next-auth/jwt';
 import AzureADProvider from "next-auth/providers/azure-ad"
-
 import GoogleProvider from 'next-auth/providers/google';
 import prisma from '@/Utils/prisma';
 declare module "next-auth" {
@@ -41,11 +40,9 @@ const options = {
         clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? 'undefined',
       })
   ],
-  pages: {
-    error: '/auth/error', 
-  },
+ 
   callbacks: {
-    async jwt({ token, user }: { token: JWT; user: any }) {
+    async jwt({ token, user }: { token: JWT; user: any}) {
       if (user) {
         token.id = user.id;
       }
@@ -58,15 +55,14 @@ const options = {
       }
       return session;
     },
+    
   },
   adapter: PrismaAdapter(prisma),
-  secret: process.env.SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 const authHandler = NextAuth(options);
 export default async function handler(...params: any[]) {
   await authHandler(...params);
-}
-
-
+};
 
