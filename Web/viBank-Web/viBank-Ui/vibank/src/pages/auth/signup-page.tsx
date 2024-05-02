@@ -31,7 +31,8 @@ function SignUpPage() {
                 const username = values.email.split('@')[0];
                 const finalvalue = {...values, username};
                 const res: any = await createUser(finalvalue);
-                let token:Token = res?.data;
+                let token: Token = res?.data;
+                console.log(token)
                 if (token) {
                     httpService.setAuthorizationHeader(token?.token);
                     setToken(token);
