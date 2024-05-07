@@ -29,7 +29,8 @@ function SignUpPage() {
             
             try {
                 const username = values.email.split('@')[0];
-                const finalvalue = {...values, username};
+                const role = 'User';
+                const finalvalue = {...values, username, role};
                 const res: any = await createUser(finalvalue);
                 let token: Token = res?.data;
                 console.log(token)
@@ -116,10 +117,10 @@ function SignUpPage() {
                     <a href ="/terms&conditions" className="font-medium text-gray-900">Terms and Conditions</a>
                     </label>
                 </div>
-                <Button type="submit" className="w-full mt-6 py-3 rounded-lg bg-gray-900 text-white uppercase font-bold rounded-md " disabled={formik.isSubmitting}  >
+                <Button type="submit" className="w-80 mt-6 py-3 rounded-lg hover:bg-violet-700 "   >
                     Sign Up
                 </Button>
-                    <p className="text-center mt-4">Already have an account? <a href="/sign-in" className = "text-gray-900 font-medium"> &nbsp;Sign In here</a>
+                    <p className="text-center mt-4">Already have an account? <a href="/login" className = "text-gray-900 font-medium"> &nbsp;Sign In here</a>
                 </p>
             </form >
              {loading && <CircularProgress />}

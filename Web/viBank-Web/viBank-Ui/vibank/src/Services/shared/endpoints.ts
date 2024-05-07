@@ -15,6 +15,9 @@ type Endpoint =
         verifyResetPasswordToken: 'api/auth/verify-reset-token',
         roles: '/roles',
         accounts: '/accounts',
-        ATMs: '/ATMs',
-        transactions: '/transactions'
+        checkBalance: '/accounts/balance',
+        ATMs: '/ATMs/all',
+        deposit: '/transactions/deposit',
+        withdraw: '/transactions/withdraw',
+        transfer: '/transactions/transfer',
     }
