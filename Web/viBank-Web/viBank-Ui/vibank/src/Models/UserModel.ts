@@ -1,12 +1,14 @@
 import { Account } from "./AccountModel"
+import { refreshToken } from '../Services/auth/auth.service';
 
 export type User = {
     username: string,
     email: string,
     password: string,
     role: string,
-    id?: string,
-    token?: Token,
+    id?: number,
+    refreshToken?: Token,
+    accountNumber: number,
     account : Account
 }
 

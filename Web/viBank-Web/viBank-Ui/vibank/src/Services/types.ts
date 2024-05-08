@@ -21,13 +21,14 @@ export type userRequest = {
     email: string
 }
 export type UserResponse = {
-    id: number,
+    userID: string;
     username: string,
     email: string,
-    roles: Roles[]
-    accessToken: string
-    refreshToken: string
-    expiresAt: Date
+    roleID: number;
+    token: string;
+    refreshToken: string;
+    expires: number;
+    refreshTokenExpires: number;
     createdAt: Date
     updatedAt: Date
 }

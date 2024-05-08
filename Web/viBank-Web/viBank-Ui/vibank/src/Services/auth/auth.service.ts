@@ -22,7 +22,6 @@ export const refreshToken = async (body: refreshTokenRequest): Promise<LoginResp
     return response.data;
 }
 
-export const createUser = async (body: RegisterRequest): Promise<UserResponse> => {
-    const response = await httpService.post<UserResponse>(endpoints.register, body);
-    return response.data;
+export const createUser =  (body: RegisterRequest)=> {
+   return httpService.post<UserResponse>(endpoints.register, body);
 }

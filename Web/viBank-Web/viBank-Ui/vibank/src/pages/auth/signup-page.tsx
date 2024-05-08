@@ -10,6 +10,7 @@ import httpService from '@/Services/shared/http.service';
 import { Token } from '@/Models/UserModel';
 import { createUser } from '@/Services/auth/auth.service';
 import { Account, AccountType } from '@/Models/AccountModel';
+import LoginPage from './loginpage';
 function SignUpPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(true)
@@ -22,20 +23,21 @@ function SignUpPage() {
         },
         validationSchema: Yup.object({
             email: Yup.string().email('Invalid email address').required('Required'),
-            password: Yup.string().min(8, 'Password must be at least 8 characters').required('Required'),
+            password: Yup.string().min(8, 'Password must be at least 8 characters')
+                .matches(/[^A-Za-z0-9]/, 'Password must contain at least one non-alphanumeric character') // Add the regex for at least one non-alphanumeric character
+                .required('Required'),
             remember: Yup.boolean(),
         }),
         onSubmit: async (values: any, { setSubmitting}) => {
             
             try {
                 const username = values.email.split('@')[0];
-                const role = 'User';
-                const finalvalue = {...values, username, role};
-                const res: any = await createUser(finalvalue);
-                let token: Token = res?.data;
+                const finalValue = {...values, username};
+                const res: any = await createUser(finalValue);
+                let token =  res?.data.token
                 console.log(token)
                 if (token) {
-                    httpService.setAuthorizationHeader(token?.token);
+                    httpService.setAuthorizationHeader(token);
                     setToken(token);
                     const url = router.query?.redirect as string || '/dashboard';
                     router.push(url);
@@ -120,7 +122,8 @@ function SignUpPage() {
                 <Button type="submit" className="w-80 mt-6 py-3 rounded-lg hover:bg-violet-700 "   >
                     Sign Up
                 </Button>
-                    <p className="text-center mt-4">Already have an account? <a href="/login" className = "text-gray-900 font-medium"> &nbsp;Sign In here</a>
+                <p className="text-center mt-4">Already have an account?
+                    <a href="/login" className="text-violet-700 font-bold">Login here</a>
                 </p>
             </form >
              {loading && <CircularProgress />}
