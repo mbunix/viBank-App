@@ -1,6 +1,6 @@
 export type Account = {
     AccountBalance: number,
-    id?: string,
+    AccountID: string,
     AccountNumber: string,
     userId?: string,
     accountType: AccountType,

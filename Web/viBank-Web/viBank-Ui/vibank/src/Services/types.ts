@@ -69,18 +69,23 @@ export type DepositMoneyRequest = {
     transactionDate: Date
 }
 export type getBalanceRequest = {
-    accountNumber: number,
-    email: User['email'],
-    
+    // accountNumber: number,
+    // email: User['email'],
+    accountID:string
+}
+export type getBalanceResponse = {
+    accountBalance: number,
+    email: string,
+    accountNumber: number
 }
 
 export type WithdrawMoneyRequest = {
-    email: string,
-    amount: number,
+    email?: string,
+    amount: string,
     accountNumber: number,
     accountID: string,
-    atmLocation: string,
-    transactionType: string,
-    transactionID: string,
-    transactionDate: Date
+    atmLocation?: string,
+    transactionType?: string,
+    transactionID?: string,
+    transactionDate?: Date
 }

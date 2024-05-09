@@ -1,10 +1,9 @@
 import httpService from "../shared/http.service";
 import { endpoints } from "../shared/endpoints";
-import { DepositMoneyRequest, TransactionResponse, TransferMoneyRequest, WithdrawMoneyRequest, getBalanceRequest } from "../types";
+import { DepositMoneyRequest, TransactionResponse, TransferMoneyRequest, WithdrawMoneyRequest, getBalanceRequest, getBalanceResponse } from "../types";
 
-export const transferMoney = async (body: TransferMoneyRequest):Promise<TransactionResponse> => {
-    const response = await httpService.post<TransactionResponse>(endpoints.transfer, body);
-    return response.data;
+export const transferMoney = async (body: TransferMoneyRequest)=> {
+   return  httpService.post<TransactionResponse>(endpoints.transfer, body);
 }
 
 
@@ -13,12 +12,13 @@ export const depositMoney = async(body: DepositMoneyRequest):Promise<Transaction
     return response.data;
 }
 
-export const withdrawMoney = async(body: WithdrawMoneyRequest):Promise<TransactionResponse> => {
-    const response = await httpService.post<TransactionResponse>(endpoints.withdraw, body);
-    return response.data;
+export const withdrawMoney = async(body: WithdrawMoneyRequest) => {
+    return httpService.post<TransactionResponse>(endpoints.withdraw, body);
 }
 
-export const checkBalance = async(body: getBalanceRequest):Promise<TransactionResponse> => {
-    const response = await httpService.post<TransactionResponse>(endpoints.checkBalance, body);
-    return response.data;
+export const checkBalance = async(body:string) => {
+return  httpService.getSingleResourceById(`${endpoints.checkBalance}${body}`);
+}
+export const checkATMDetails = async(body:string) => {
+return  httpService.getSingleResourceById(`${endpoints.ATMs}${body}`);
 }

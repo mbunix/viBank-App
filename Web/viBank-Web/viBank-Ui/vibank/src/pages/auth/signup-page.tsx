@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/router';
-import { getToken, setToken } from '@/constants/auth';
+import { getToken, setAccountDetails, setToken } from '@/constants/auth';
 import { Image } from 'primereact/image';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
@@ -34,11 +34,13 @@ function SignUpPage() {
                 const username = values.email.split('@')[0];
                 const finalValue = {...values, username};
                 const res: any = await createUser(finalValue);
-                let token =  res?.data.token
+                let token = res?.data.token
+                let user = res?.data.user
                 console.log(token)
                 if (token) {
                     httpService.setAuthorizationHeader(token);
                     setToken(token);
+                    setAccountDetails(user);
                     const url = router.query?.redirect as string || '/dashboard';
                     router.push(url);
                 }

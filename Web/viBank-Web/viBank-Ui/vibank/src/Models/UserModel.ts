@@ -9,6 +9,7 @@ export type User = {
     id?: number,
     refreshToken?: Token,
     accountNumber: number,
+    accountID: Account['AccountID'],
     account : Account
 }
 
