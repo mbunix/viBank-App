@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿
 using System.ComponentModel.DataAnnotations;
-
 namespace viBank_Api.Models
 {
     public class UserModel
     {
         public long ID { get; set; }
-        public Guid UserID { get; set; }
+        public Guid UserModelID { get; set; }
         public string UserName { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
@@ -18,8 +17,6 @@ namespace viBank_Api.Models
         public DateTime? ActivationDate { get; set; }
         public DateTime? UpdatedDTM { get; set; }
         public long RoleID { get; set; }
-        //public Partner? Partner { get; set; }
-        //public Distributor? Distributor { get; set; }
         public Account? Account { get; set; }
         public DateTime CreatedDTM { get; set; }
         public bool IsDeleted { get; set; } = false;

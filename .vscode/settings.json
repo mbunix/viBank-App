@@ -1,3 +1,6 @@
 {
     "eslint.enable": false,
+    "circleci.persistedProjectSelection": [
+        "circleci/9fsA9CAZuw52PyZJsiyY27/LFgjn9E2mxZbf6TaG2vzBq"
+    ],
 }

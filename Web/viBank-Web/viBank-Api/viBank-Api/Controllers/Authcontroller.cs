@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using Google.Apis.Auth;
-using viBank_Api.Models;
-using Microsoft.EntityFrameworkCore;
-using viBank_Api.Helpers;
 using viBank_Api.DTO;
 using viBank_Api.Services.authService;
 namespace viBank_Api.Controllers
@@ -13,7 +8,7 @@ namespace viBank_Api.Controllers
     [Route("api/auth")]
     public class Authcontroller : ControllerBase
     {
-
+       
         private readonly IAuthService _authService;
         public Authcontroller(IAuthService authService)
         {

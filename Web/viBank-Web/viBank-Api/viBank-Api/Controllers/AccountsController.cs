@@ -46,7 +46,18 @@ namespace viBank_Api.Controllers
             }
         }
 
-        // Future implementations for selecting and deleting accounts...
+        //Get the AccountBalance
+        [HttpGet]
+        [Route("accounts/id")]
+        public async Task<ActionResult<AccountDetailsDto>> GetAccountDetails(Guid AccontID)
+        {
+            var accountData = await _accountsService.GetAccountDetails(AccontID);
+            if (accountData != null)
+            {
+                return Ok(accountData);
+            }
+            return NotFound();
+        }
     }
 }
 

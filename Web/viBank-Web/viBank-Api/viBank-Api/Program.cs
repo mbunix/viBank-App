@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -48,22 +49,28 @@ public class Program
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             );
 
+        builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
+        builder.Services.AddIdentityServer();
 
         // Configure authentication
         builder.Services.AddAuthentication(options =>
         {
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
         })
-        .AddCookie()
+        .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+
         .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
         {
             options.ClientId = builder.Configuration.GetValue<string>("GoogleKeys:clientId");
             options.ClientSecret = builder.Configuration.GetValue<string>("GoogleKeys:clientSecret");
             options.CallbackPath = "/auth/signin-google";
         })
-        .AddOpenIdConnect("Microsoft", options =>
+        .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
         {
+            options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             options.Authority = "https://login.microsoftonline.com/common/v2.0";
             options.ClientId = builder.Configuration.GetValue<string>("MicrosoftKeys:ClientId");
             options.ClientSecret = builder.Configuration.GetValue<string>("MicrosoftKeys:ClientSecret");
@@ -139,13 +146,14 @@ public class Program
         builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IAuthService, AuthService>();
-        builder.Services.AddScoped<IAccounts,  AccountsService>();
-        builder.Services.AddScoped<Itransactions,TransactionService>();
+        builder.Services.AddScoped<IAccounts, AccountsService>();
+        builder.Services.AddScoped<Itransactions, TransactionService>();
 
 
 
         // Build and run the app
         var app = builder.Build();
+        app.MapIdentityApi<IdentityUser>();
         app.UseCors(allowOriginsPolicy);
 
         // Enable Swagger in development mode

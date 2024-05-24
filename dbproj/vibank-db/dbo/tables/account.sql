@@ -4,14 +4,11 @@ CREATE TABLE [dbo].[account] (
     [AccountNumber]  BIGINT           NULL,
     [AccountType]    INT              NOT NULL,
     [AccountBalance] FLOAT (53)       NOT NULL,
-    [UserID]         UNIQUEIDENTIFIER NOT NULL,
-    [UserEmail]      NVARCHAR (MAX)   NULL,
-    [CreatedDTM]     DATETIME2 (7)    NULL,
-    [UpdatedDTM]     DATETIME2 (7)    NULL
+    [UserModelID]    UNIQUEIDENTIFIER NOT NULL,
+    [UserEmail]      NVARCHAR (MAX)   NOT NULL,
+    [CreatedDTM]     DATETIME2 (7)    NOT NULL,
+    [UpdatedDTM]     DATETIME2 (7)    NOT NULL,
+    CONSTRAINT [PK_account] PRIMARY KEY CLUSTERED ([ID] ASC)
 );
-GO
-
-ALTER TABLE [dbo].[account]
-    ADD CONSTRAINT [PK_account] PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 

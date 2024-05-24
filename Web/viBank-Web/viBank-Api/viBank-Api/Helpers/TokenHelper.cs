@@ -12,38 +12,44 @@ using viBank_Api.Models;
 
 namespace viBank_Api.Helpers
 {
+
     [NonController]
     public class TokenHelper
     {
         private readonly IConfiguration _configuration;
+
         public TokenHelper(IConfiguration configuration)
         {
             _configuration = configuration;
         }
+
         public TokenObject CreateToken(UserModel user, int tokenValidityInMinutes)
         {
             var claims = new List<Claim>
-            {
-                new(ClaimTypes.Name, user.UserName),
-                new(ClaimTypes.Email, user.Email),
-                new(ClaimTypes.NameIdentifier, user.ID.ToString()),
-                new(ClaimTypes.Role, user.RoleID.ToString())
-            };
+        {
+            new("username", user.UserName),
+            new("email", user.Email),
+            new("userId", user.UserModelID.ToString()),
+            new("roleId", user.RoleID.ToString() ?? "")
+        };
+
             var secret = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration["Token"]!));
-            var credentials = new SigningCredentials(secret, SecurityAlgorithms.HmacSha512Signature);
+            var credentials = new SigningCredentials(secret, SecurityAlgorithms.HmacSha256Signature);
+
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(tokenValidityInMinutes),
+                expires: DateTime.UtcNow.AddMinutes(tokenValidityInMinutes),
                 signingCredentials: credentials
             );
-            var returnObject = new TokenObject()
+
+            var returnObj = new TokenObject()
             {
                 Token = token,
                 UserToken = new JwtSecurityTokenHandler().WriteToken(token)
             };
-            return returnObject;
+            return returnObj;
         }
 
-       
+
     }
 }

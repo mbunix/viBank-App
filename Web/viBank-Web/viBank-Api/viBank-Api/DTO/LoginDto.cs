@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Authentication;
+using viBank_Api.Models;
 namespace viBank_Api.DTO
 {
     public class LoginRequestDto
@@ -36,10 +37,13 @@ namespace viBank_Api.DTO
     public class UserResponseDto
     {
         public long ID { get; set; }
-        public Guid UserID { get; set; }
         public string UserName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string? Role { get; set; }
+        public string PasswordHash { get; set; } = string.Empty;
+        public DateTime CreatedDTM { get; set; }
+        public Account? Account { get; set; }
+        public Guid UserModelID { get; set; }
         public long? AccountNumber { get; set; }
         public string? RefreshToken { get; set; }
         public long RoleID { get; set; }

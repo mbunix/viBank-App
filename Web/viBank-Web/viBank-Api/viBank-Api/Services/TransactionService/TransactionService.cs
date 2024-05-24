@@ -1,4 +1,5 @@
-﻿using viBank_Api.DTO;
+﻿using Microsoft.EntityFrameworkCore;
+using viBank_Api.DTO;
 using viBank_Api.Models;
 
 namespace viBank_Api.Services.TransactionService
@@ -11,6 +12,7 @@ namespace viBank_Api.Services.TransactionService
         {
             _context = context;
         }
+      
         public async  Task<Transactions> Deposit(TransactionsDto transactions)
         {
             //find the account 
@@ -39,8 +41,14 @@ namespace viBank_Api.Services.TransactionService
 
        public async Task<Transactions> Transfer(TransactionsDto transactions)
         {
-            var originAccount = await _context.account.FindAsync(transactions.OriginAccountNumber);
-            var destinationAccount = await _context.account.FindAsync(transactions.DestinationAccountNumber);
+            var originAccount = await _context.account.FirstOrDefaultAsync(u => u.AccountNumber == transactions.OriginAccountNumber);
+
+
+            var destinationAccount = await _context.account.FirstOrDefaultAsync(u => u.AccountNumber == transactions.DestinationAccountNumber);
+
+          
+
+
             if (originAccount == null|| destinationAccount == null)
             {
                 throw new InvalidOperationException("Account is not Available");
@@ -62,7 +70,8 @@ namespace viBank_Api.Services.TransactionService
                 Amount = transactions.Amount,
                 AccountID = originAccount.ID,
                 transactionType = TransactionType.Transfers,
-                TransactionDate = DateTime.UtcNow
+                TransactionDate = DateTime.UtcNow,
+                ATMID = Guid.NewGuid(),
             };
             await _context.Transactions.AddAsync(transaction);
             await _context.SaveChangesAsync();
@@ -72,12 +81,14 @@ namespace viBank_Api.Services.TransactionService
 
         public async Task<Transactions>  Withdraw(TransactionsDto transactions)
         {
-            var account = await _context.account.FindAsync(transactions.OriginAccountNumber);
+            var account = await _context.account.FirstOrDefaultAsync(u => u.AccountNumber == transactions.OriginAccountNumber);
             if (account == null)
             {
                 throw new InvalidOperationException("Account not found.");
             }
-            var atm = await _context.ATMs.FindAsync(transactions.ATMID);
+            var atm = await _context.ATMs.FirstOrDefaultAsync(u => u.ATMID == transactions.ATMID);
+
+
             if (atm == null|| !atm.isActive)
             {
                 throw new InvalidOperationException("Atm is not active ");
@@ -105,5 +116,7 @@ namespace viBank_Api.Services.TransactionService
             // Return the transaction
             return transaction;
         }
+
+        
     }
 }

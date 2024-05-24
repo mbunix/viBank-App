@@ -1,18 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using viBank_Api.Models;
 
 namespace viBank_Api
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options): base(options) { }
-        public DbSet<UserModel> User { get; set;}
-        public DbSet<Account> account {  get; set;}
-        public DbSet<Transactions> Transactions { get; set;}
-        public DbSet<ATMs> ATMs { get; set;}
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public DbSet<UserModel> User { get; set; }
+        public DbSet<Account> account { get; set; }
+        public DbSet<Transactions> Transactions { get; set; }
+        public DbSet<ATMs> ATMs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Add your entity configurations here
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Transactions>(entity =>
             {
                 entity.Property(e => e.ID).ValueGeneratedOnAdd();
@@ -40,7 +43,16 @@ namespace viBank_Api
 
 
             });
-           
+            SeedRoles(modelBuilder);
+
+        }
+        private void SeedRoles(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<IdentityRole>().HasData
+                (
+                new IdentityRole() { Name = "Admin",ConcurrencyStamp ="1", NormalizedName ="Admin"},
+                new IdentityRole() { Name = "User", ConcurrencyStamp= "2", NormalizedName = "User"}
+                );
         }
     }
 }

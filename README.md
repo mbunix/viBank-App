@@ -1,1 +1,2 @@
 # viBank-App
+copyright @mbunix

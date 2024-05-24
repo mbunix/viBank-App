@@ -8,10 +8,10 @@ namespace viBank_Api.DTO
 {
     public class CreateUserDto
     {
-        public string UserName { get; set; } = new UserModel().Email.Split('@').First();
+        public string UserName { get; set; }
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
-        public Guid UserID { get; set; } = Guid.NewGuid();
+        public string UserID { get; set; } = Guid.NewGuid().ToString();
         protected Account account { get; set; }
         public  DateTime createdDTM {  get; set; }
         public DateTime updatedDTM {  get; set; }

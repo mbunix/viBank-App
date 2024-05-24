@@ -5,16 +5,11 @@ using System.Linq;
 using System.Security.Authentication;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect; 
-using Microsoft.AspNetCore.Authentication.Google; 
 using viBank_Api.DTO;
 using viBank_Api.Helpers;
 using viBank_Api.Models;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Google.Apis.Auth;
 namespace viBank_Api.Services.authService
 {
@@ -24,7 +19,7 @@ namespace viBank_Api.Services.authService
         private readonly TokenHelper _tokenHelper;
         private readonly IConfiguration _config;
 
-        public AuthService(AppDbContext dbContext, IConfiguration config)
+        public AuthService(AppDbContext dbContext,IConfiguration config)
         {
             _config = config;
             _dbContext = dbContext;
@@ -40,8 +35,8 @@ namespace viBank_Api.Services.authService
             {
                 throw new InvalidDataException("User not found");
             }
-        
-            bool isAccountHolder = user.RoleID == (int)UserRoles.AccountHolder;
+
+            bool isAccountHolder = user.RoleID == (int)UserRoles.User;
             if (isAccountHolder)
             {
                 if (user.Account == null)

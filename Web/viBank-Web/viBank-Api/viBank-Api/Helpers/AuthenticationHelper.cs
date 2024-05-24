@@ -16,12 +16,8 @@ namespace viBank_Api.Helpers
     }
     public enum UserRoles
     {
-        None = 0,
         Admin = 1001,
-        Customer = 2001,
-        Partner = 3001,
-        AccountHolder = 3002,
-        Distributor = 4001
+        User = 2001,
     }
     public static class AuthenticationHelper
     {
@@ -44,21 +40,9 @@ namespace viBank_Api.Helpers
         {
             return roleId == (int)UserRoles.Admin;
         }
-        public static bool IsCustomer(long? roleId)
+        public static bool IsUser(long? roleId)
         {
-            return roleId == (int)UserRoles.Customer;
-        }
-        public static bool IsPartner(long? roleId)
-        {
-            return roleId == (int)UserRoles.Partner;
-        }
-        public static bool IsEmployee(long? roleId)
-        {
-            return roleId == (int)UserRoles.Distributor;
-        }
-        public static bool IsAccountHolder(long? roleId)
-        {
-            return roleId == (int)UserRoles.AccountHolder;
+            return roleId == (int)UserRoles.User;
         }
     }
 }

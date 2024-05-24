@@ -10,6 +10,6 @@ namespace viBank_Api.Services.UserService
 {
     public interface IUserService
     {
-        Task<UserModel> Create(CreateUserDto user);
+        Task<TokenResponseDto> Create(CreateUserDto user, string role);
     }
 }

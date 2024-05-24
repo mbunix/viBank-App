@@ -49,6 +49,14 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
+            "Duende.IdentityServer": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Duende.IdentityServer.EntityFramework": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
             "Google.Apis.Auth": {
               "target": "Package",
               "version": "[1.68.0, )"
@@ -56,6 +64,14 @@
             "Google.Apis.Auth.AspNetCore3": {
               "target": "Package",
               "version": "[1.68.0, )"
+            },
+            "Microsoft.AspNet.Identity.Core": {
+              "target": "Package",
+              "version": "[2.2.4, )"
+            },
+            "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": {
+              "target": "Package",
+              "version": "[7.0.18, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
@@ -66,6 +82,10 @@
               "version": "[8.0.4, )"
             },
             "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.4, )"
             },
@@ -94,6 +114,10 @@
             "Microsoft.SqlServer.DacFx": {
               "target": "Package",
               "version": "[162.2.111, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

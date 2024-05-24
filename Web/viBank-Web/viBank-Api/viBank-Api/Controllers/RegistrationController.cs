@@ -19,12 +19,12 @@ namespace viBank_Api.Controllers
         }
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<CreateUserDto>> CreateUser( [FromBody] CreateUserDto createUser)
+        public async Task<ActionResult> CreateUser( [FromBody] CreateUserDto createUser)
         {
             try
             {
-                await _userService.Create(createUser);
-                return Created("api/users", createUser);
+              var result =  await _userService.Create(createUser,string.Empty);
+                return Ok(result);
 
             }catch (Exception ex)
             {

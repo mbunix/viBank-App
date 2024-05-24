@@ -7,10 +7,8 @@ import { Image } from 'primereact/image';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import httpService from '@/Services/shared/http.service';
-import { Token } from '@/Models/UserModel';
 import { createUser } from '@/Services/auth/auth.service';
-import { Account, AccountType } from '@/Models/AccountModel';
-import LoginPage from './loginpage';
+import { Card } from '@material-tailwind/react';
 function SignUpPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(true)
@@ -117,20 +115,31 @@ function SignUpPage() {
                         onChange={formik.handleChange}
                     />
                     <label htmlFor="remember">
-                        I agree to the&nbsp;
-                    <a href ="/terms&conditions" className="font-medium text-gray-900">Terms and Conditions</a>
+                        I agree to the&nbsp; <a href ="/terms&conditions" className="font-medium text-gray-900">Terms and Conditions</a>
                     </label>
                 </div>
                 <Button type="submit" className="w-80 mt-6 py-3 rounded-lg hover:bg-violet-700 "   >
                     Sign Up
                 </Button>
-                <p className="text-center mt-4">Already have an account?
-                    <a href="/login" className="text-violet-700 font-bold">Login here</a>
-                </p>
+                <p className="text-center mt-4">Already have an account? <span> or sign in </span></p>
+                <div className="flex justify-center align-center border-2 border-gray-500">
+                <Card color="transparent" shadow={false} placeholder={"login"}>
+                <div className='flex justify-around'>
+                <Button className="w-50 mt-6 py-3 rounded-lg bg-gray-300 text-gray-900 font-medium" onClick={(e) => { e.preventDefault(); signIn('google')}}>
+                    <Image src='icons8-google-48.png' alt="google" />
+                    Login with google
+                </Button>
+                or 
+                <Button className="w-50 mt-6 py-3 rounded-lg bg-gray-300 text-gray-900 font-medium " onClick={() => signIn('microsoft')}>
+                    <Image  src='icons8-microsoft-48.png' alt="microsoft" />
+                    Login with microsoft
+                    </Button>
+                </div>
+                </Card>
+            </div>
             </form >
-             {loading && <CircularProgress />}
+            {loading && <CircularProgress />}
         </div>
-       
     );
 }
 

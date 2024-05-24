@@ -1,4 +1,6 @@
-﻿using viBank_Api.DTO;
+﻿using Microsoft.EntityFrameworkCore;
+using viBank_Api.DTO;
+using viBank_Api.Helpers;
 using viBank_Api.Models;
 
 namespace viBank_Api.Services.AccountsService
@@ -31,7 +33,21 @@ namespace viBank_Api.Services.AccountsService
             return account;
 
         }
+        public async Task<Account> GetAccountDetails(Guid accountId)
+        {
+            //get the user and account
+            var userAccount = await _context.account.FirstOrDefaultAsync( a => a.AccountID == accountId);
 
+            if (userAccount == null)
+            {
+                if (userAccount == null)
+                {
+                    throw new InvalidDataException("User with such account not found");
+                }
+            }
+           
+            return userAccount;
+        }
         public async  Task<CreateAccountDto> DeleteAccount(CreateAccountDto account)
         {
             throw new NotImplementedException();

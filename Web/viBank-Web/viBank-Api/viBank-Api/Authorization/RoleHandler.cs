@@ -53,18 +53,7 @@ namespace viBank_Api.Authorization
                     {
                         context.Succeed(requirement);
                     }
-                    if (requirement is UserRoleRequirement && AuthenticationHelper.IsCustomer(roleId))
-                    {
-                        context.Succeed(requirement);
-                    }
-                    if (requirement is UserRoleRequirement && AuthenticationHelper.IsEmployee(roleId))
-                    {
-                        context.Succeed(requirement);
-                    }
-                    if (requirement is UserRoleRequirement && AuthenticationHelper.IsPartner(roleId))
-                    {
-                        context.Succeed(requirement);
-                    }
+             
                 }
             }
         }
